@@ -1,0 +1,7 @@
+template_id,template_name,audience,format,sections,include_charts,include_anomalies,include_offset_comparison,include_recommendations,delivery_method
+TPL-ENG,Daily Engineering Report,drilling_engineer,detailed,well_status|kpi_table|activity_breakdown|anomaly_detail|offset_comparison|recommendations,true,true,true,true,email
+TPL-SUPT,Superintendent Summary,superintendent,summary,well_status|kpi_highlights|anomaly_flags|npt_summary|next_24hr_plan,false,true,false,true,email
+TPL-VP,Executive Morning Report,vp_operations,executive,multi_well_summary|critical_anomalies|cost_tracking|milestone_progress,true,true,false,false,dashboard
+TPL-MORN,Multi-Well Morning Report,management,summary,all_wells_status|critical_flags|daily_progress|cost_summary,true,true,false,false,email
+TPL-WEEK,Weekly Performance Report,management,detailed,weekly_kpi_trends|npt_analysis|cost_per_foot|offset_benchmarking|optimization_opportunities,true,true,true,true,email
+TPL-OFFSET,Offset Well Comparison,drilling_engineer,detailed,offset_selection|parameter_comparison|performance_curves|lessons_learned,true,false,true,true,email

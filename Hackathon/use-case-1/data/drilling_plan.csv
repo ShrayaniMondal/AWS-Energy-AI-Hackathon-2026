@@ -1,0 +1,13 @@
+well_id,interval_name,planned_depth_from_ft,planned_depth_to_ft,planned_tvd_from_ft,planned_tvd_to_ft,hole_size_in,target_rop_ft_hr,target_wob_klbs,target_rpm,target_mud_weight_ppg,planned_days,formation,casing_program
+PERM-2847,Surface,0,2500,0,2500,17.5,80,15,100,8.8,2,Surface,20 inch conductor
+PERM-2847,Intermediate,2500,7500,2500,7200,12.25,65,25,115,9.8,5,Spraberry/Dean,13-3/8 inch intermediate
+PERM-2847,Production,7500,11200,7200,8800,12.25,55,28,118,10.4,8,Wolfcamp A/B,9-5/8 inch production
+PERM-3201,Surface,0,3000,0,3000,17.5,75,16,95,9.0,2.5,Surface,20 inch conductor
+PERM-3201,Intermediate,3000,8500,3000,8000,12.25,55,24,120,10.5,6,Bone Spring Upper,13-3/8 inch intermediate
+PERM-3201,Production,8500,14500,8000,12000,8.75,30,22,130,12.6,10,Bone Spring Lower,7 inch production
+EF-1105,Surface,0,2000,0,2000,17.5,85,14,105,8.6,1.5,Surface,20 inch conductor
+EF-1105,Intermediate,2000,9800,2000,8900,12.25,70,25,130,9.7,5,Pearsall/Eagle Ford,13-3/8 inch intermediate
+EF-1105,Production,9800,12800,8900,10500,12.25,65,26,128,9.9,6,Austin Chalk/Eagle Ford,9-5/8 inch production
+BAK-0892,Surface,0,2500,0,2500,17.5,70,15,90,9.0,2,Surface,20 inch conductor
+BAK-0892,Intermediate,2500,9500,2500,9200,12.25,40,20,95,11.0,7,Bakken/Three Forks,9-5/8 inch intermediate
+BAK-0892,Lateral,9500,21000,9200,9800,8.5,28,19,92,11.5,12,Three Forks,7 inch liner

@@ -1,0 +1,24 @@
+incident_id,well_name,date,depth_ft,formation,npt_category,root_cause,resolution,hours_lost,cost_usd
+NPT-0001,Midland State A 1H,2024-02-11,9818,Wolfcamp A,stuck_pipe,differential_sticking,jarred_free,11.8,212400
+NPT-0002,Midland State A 1H,2024-02-21,9509,Wolfcamp A,stuck_pipe,differential_sticking,jarred_free,5.0,80100
+NPT-0003,Midland State A 1H,2024-02-06,9449,Wolfcamp A,stuck_pipe,mechanical_sticking_ledge,spotted_oil_pill,26.9,1134000
+NPT-0004,Midland State B 2H,2024-04-20,8357,Spraberry,well_control,formation_pressure_underestimate,weighted_up_mud,28.3,533900
+NPT-0005,Midland State B 2H,2024-05-03,7018,Spraberry,well_control,gas_influx,weighted_up_mud,34.6,916000
+NPT-0006,Midland State B 2H,2024-05-12,7435,Spraberry,stuck_pipe,pack_off,back_reamed_with_rotation,23.3,1088300
+NPT-0007,Midland State B 2H,2024-05-14,8588,Spraberry,stuck_pipe,pack_off,jarred_free,6.5,159900
+NPT-0008,Midland State B 2H,2024-05-02,7882,Spraberry,well_control,gas_influx,weighted_up_mud,26.5,370200
+NPT-0009,Midland State B 2H,2024-05-04,8451,Spraberry,stuck_pipe,mechanical_sticking_ledge,jarred_free,31.7,898600
+NPT-0010,Reagan County C 3H,2024-08-06,9058,Wolfcamp A,lost_circulation,depleted_zone,reduced_ecd,10.7,251200
+NPT-0011,Reagan County C 3H,2024-08-24,9547,Wolfcamp A,stuck_pipe,differential_sticking,back_reamed_with_rotation,9.5,411800
+NPT-0012,Reagan County C 3H,2024-08-24,8852,Wolfcamp A,equipment_failure,top_drive_fault,replaced_liner,26.0,557500
+NPT-0013,Reagan County C 3H,2024-07-17,9983,Wolfcamp A,lost_circulation,natural_fractures,pumped_lco_pill,29.8,871700
+NPT-0014,Reagan County C 3H,2024-08-25,8735,Wolfcamp A,well_control,swabbing,weighted_up_mud,20.0,1000800
+NPT-0015,Upton County D 4H,2024-10-15,8985,Bone Spring,well_control,swabbing,bullheaded_kill_fluid,27.8,977900
+NPT-0016,Upton County D 4H,2024-10-25,9895,Bone Spring,equipment_failure,mud_pump_liner_failure,swapped_mwd_tool,15.6,856200
+NPT-0017,Upton County D 4H,2024-11-17,8886,Bone Spring,equipment_failure,mwd_tool_failure,replaced_liner,5.5,91900
+NPT-0018,Upton County D 4H,2024-10-04,9921,Bone Spring,equipment_failure,top_drive_fault,swapped_mwd_tool,16.3,613300
+NPT-0019,Midland State E 5H,2024-12-27,9693,Wolfcamp A,stuck_pipe,mechanical_sticking_ledge,jarred_free,7.7,385400
+NPT-0020,Midland State E 5H,2024-11-29,8528,Wolfcamp A,well_control,swabbing,bullheaded_kill_fluid,17.9,564000
+NPT-0021,Midland State E 5H,2024-12-29,9325,Wolfcamp A,well_control,swabbing,weighted_up_mud,9.7,497100
+NPT-0022,Midland State E 5H,2024-12-04,8613,Wolfcamp A,lost_circulation,depleted_zone,pumped_lco_pill,28.4,999500
+NPT-0023,Midland State E 5H,2024-11-12,9300,Wolfcamp A,well_control,formation_pressure_underestimate,shut_in_well,7.6,209800

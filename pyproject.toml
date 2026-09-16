@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "geodrill-risk-copilot"
+version = "0.1.0"
+description = "Grounded seismic digital twin and drilling risk copilot for the AWS AI Energy Hackathon"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "matplotlib>=3.8,<4",
+]
+
+[project.optional-dependencies]
+dashboard = [
+  "pandas>=2.2,<3",
+  "streamlit>=1.40,<2",
+]
+agentcore = [
+  "aws-opentelemetry-distro~=0.18.0",
+  "bedrock-agentcore>=1.9.1,<2",
+  "strands-agents>=1.15,<2",
+]
+dev = [
+  "mypy>=1.11,<2",
+  "pytest>=8,<9",
+  "pyyaml>=6,<7",
+  "ruff>=0.8,<1",
+]
+
+[project.scripts]
+seismic-catalog-generate = "aws_ai_energy.generate.seismic_catalog:main"
+seismic-catalog-analyze = "aws_ai_energy.subsurface.cli:main"
+claude-submission-validate = "aws_ai_energy.validation:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aws_ai_energy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = ["src"]
+packages = ["aws_ai_energy"]

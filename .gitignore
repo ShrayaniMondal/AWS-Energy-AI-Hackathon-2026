@@ -1,33 +1,35 @@
 # Python
+.venv/
 __pycache__/
 *.py[cod]
 *.egg-info/
-dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Generated evidence and build outputs
+outputs/
+artifacts/
 build/
-*.egg
+dist/
+*.zip
+*.tar.gz
 
-# Virtual environments
-venv/
-.venv/
-env/
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+agentcore/.env.local
 
-# Jupyter
-.ipynb_checkpoints/
+# AgentCore/CDK generated state
+agentcore/.cache/
+agentcore/cdk/node_modules/
+agentcore/cdk/dist/
+agentcore/cdk/cdk.out/
+agentcore/.cli/*
+!agentcore/.cli/deployed-state.json
 
-# Raw datasets
-data/raw/*
-!data/raw/.gitkeep
-
-# Outputs
-outputs/reports/*
-outputs/visualizations/*
-!outputs/reports/.gitkeep
-!outputs/visualizations/.gitkeep
-
-# OS
+# Editor and OS
 .DS_Store
-Thumbs.db
-
-# IDE
 .vscode/
 .idea/

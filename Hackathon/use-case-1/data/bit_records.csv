@@ -1,0 +1,42 @@
+well_name,run_number,bit_size_in,bit_type,manufacturer,serial_number,depth_in_ft,depth_out_ft,footage_ft,hours,avg_rop_fthr,dull_grade_iadc,reason_pulled,cost_usd
+Midland State A 1H,1,8.75,Hybrid,Smith Bits,SN-867460,0,1437,1437,24.2,59.4,3-3-BT-A-X-I-NO-PR,TD,52911
+Midland State A 1H,2,5.875,Tricone,Baker Hughes,SN-377932,1437,3152,1715,34.1,50.3,3-3-BT-A-X-I-NO-PR,Dull,53343
+Midland State A 1H,3,5.875,Tricone,Halliburton Security,SN-559381,3152,5175,2023,20.8,97.3,3-3-BT-A-X-I-NO-PR,TD,34246
+Midland State A 1H,4,5.875,PDC,Baker Hughes,SN-717024,5175,7295,2120,47.0,45.1,1-1-BT-A-X-I-NO-PR,TD,22652
+Midland State A 1H,5,6.125,PDC,Smith Bits,SN-639131,7295,8736,1441,24.7,58.3,1-1-BT-A-X-I-NO-PR,Formation change,61842
+Midland State A 1H,6,5.875,PDC,NOV,SN-354801,8736,11924,3188,55.8,57.1,3-3-BT-A-X-I-NO-PR,BHA change,30478
+Midland State A 1H,7,6.125,Tricone,NOV,SN-531071,11924,13510,1586,33.2,47.8,3-3-BT-A-X-I-NO-PR,TD,62129
+Midland State A 1H,8,6.125,Hybrid,Smith Bits,SN-360735,13510,15113,1603,35.7,44.9,1-1-BT-A-X-I-NO-PR,Dull,53146
+Midland State A 1H,9,6.125,PDC,NOV,SN-361941,15113,18150,3037,59.3,51.2,0-0-WT-A-X-I-NO-TD,BHA change,54066
+Midland State A 1H,10,8.75,Hybrid,Smith Bits,SN-890170,18150,18450,300,36.3,44.1,1-1-BT-A-X-I-NO-PR,Dull,44634
+Midland State B 2H,1,8.75,Tricone,Baker Hughes,SN-497382,0,3189,3189,40.6,78.5,0-0-WT-A-X-I-NO-TD,BHA change,35380
+Midland State B 2H,2,5.875,Hybrid,NOV,SN-262316,3189,6252,3063,48.8,62.8,1-1-BT-A-X-I-NO-PR,Formation change,32267
+Midland State B 2H,3,8.75,Hybrid,Halliburton Security,SN-159942,6252,7691,1439,16.7,86.2,0-0-WT-A-X-I-NO-TD,BHA change,50954
+Midland State B 2H,4,8.75,Hybrid,Baker Hughes,SN-171849,7691,11066,3375,64.2,52.6,0-0-WT-A-X-I-NO-TD,Dull,44461
+Midland State B 2H,5,8.75,Hybrid,Smith Bits,SN-749468,11066,12757,1691,14.7,115.0,0-0-WT-A-X-I-NO-TD,BHA change,61081
+Midland State B 2H,6,8.75,Tricone,Halliburton Security,SN-350280,12757,16098,3341,51.2,65.3,2-2-WT-G-X-I-NO-TD,BHA change,26577
+Midland State B 2H,7,8.75,PDC,NOV,SN-751332,16098,17900,1802,31.7,76.6,0-0-WT-A-X-I-NO-TD,TD,53234
+Reagan County C 3H,1,6.125,PDC,Smith Bits,SN-356150,0,2073,2073,25.8,80.3,2-2-WT-G-X-I-NO-TD,Formation change,28338
+Reagan County C 3H,2,6.125,Hybrid,Smith Bits,SN-800305,2073,5067,2994,28.1,106.5,2-2-WT-G-X-I-NO-TD,TD,26800
+Reagan County C 3H,3,5.875,PDC,Baker Hughes,SN-385577,5067,7350,2283,46.4,49.2,2-2-WT-G-X-I-NO-TD,Dull,40471
+Reagan County C 3H,4,5.875,Tricone,NOV,SN-363319,7350,9383,2033,21.4,95.0,0-0-WT-A-X-I-NO-TD,TD,59568
+Reagan County C 3H,5,8.75,PDC,Halliburton Security,SN-908577,9383,12317,2934,27.6,106.3,1-1-BT-A-X-I-NO-PR,Formation change,28589
+Reagan County C 3H,6,5.875,Tricone,Smith Bits,SN-217308,12317,15326,3009,35.8,84.1,0-0-WT-A-X-I-NO-TD,Dull,53755
+Reagan County C 3H,7,5.875,Hybrid,Baker Hughes,SN-550664,15326,16673,1347,12.6,106.9,1-1-BT-A-X-I-NO-PR,TD,38202
+Reagan County C 3H,8,6.125,PDC,Baker Hughes,SN-815198,16673,19100,2427,24.1,111.7,1-1-BT-A-X-I-NO-PR,TD,41178
+Upton County D 4H,1,5.875,Tricone,Baker Hughes,SN-348237,0,3493,3493,31.5,110.9,1-1-BT-A-X-I-NO-PR,Dull,45020
+Upton County D 4H,2,6.125,Tricone,Baker Hughes,SN-379766,3493,4794,1301,23.9,54.4,1-1-BT-A-X-I-NO-PR,TD,43070
+Upton County D 4H,3,8.75,PDC,NOV,SN-466643,4794,6152,1358,12.5,108.6,2-2-WT-G-X-I-NO-TD,Dull,32609
+Upton County D 4H,4,6.125,Tricone,Halliburton Security,SN-172792,6152,7448,1296,14.0,92.6,2-2-WT-G-X-I-NO-TD,Formation change,60040
+Upton County D 4H,5,6.125,Hybrid,Smith Bits,SN-220944,7448,10734,3286,45.7,71.9,2-2-WT-G-X-I-NO-TD,Dull,56049
+Upton County D 4H,6,6.125,Hybrid,Halliburton Security,SN-863934,10734,13021,2287,53.1,43.1,2-2-WT-G-X-I-NO-TD,BHA change,57728
+Upton County D 4H,7,8.75,Hybrid,Halliburton Security,SN-146542,13021,16315,3294,66.9,49.2,3-3-BT-A-X-I-NO-PR,TD,52073
+Upton County D 4H,8,5.875,Hybrid,Baker Hughes,SN-481913,16315,18200,1885,35.9,94.8,3-3-BT-A-X-I-NO-PR,TD,61531
+Midland State E 5H,1,8.75,Hybrid,Halliburton Security,SN-631756,0,2552,2552,28.4,89.9,2-2-WT-G-X-I-NO-TD,BHA change,39376
+Midland State E 5H,2,8.75,Hybrid,Baker Hughes,SN-540869,2552,5400,2848,29.7,95.9,3-3-BT-A-X-I-NO-PR,Dull,58338
+Midland State E 5H,3,6.125,PDC,Halliburton Security,SN-320392,5400,7832,2432,33.6,72.4,3-3-BT-A-X-I-NO-PR,Formation change,48473
+Midland State E 5H,4,5.875,PDC,NOV,SN-932291,7832,10841,3009,39.9,75.4,1-1-BT-A-X-I-NO-PR,TD,36598
+Midland State E 5H,5,6.125,Hybrid,Smith Bits,SN-958179,10841,14152,3311,35.6,93.0,1-1-BT-A-X-I-NO-PR,Formation change,32722
+Midland State E 5H,6,8.75,PDC,NOV,SN-740967,14152,16167,2015,38.9,51.8,0-0-WT-A-X-I-NO-TD,BHA change,45160
+Midland State E 5H,7,6.125,Tricone,NOV,SN-355836,16167,18163,1996,20.5,97.4,1-1-BT-A-X-I-NO-PR,TD,24985
+Midland State E 5H,8,5.875,Hybrid,NOV,SN-152657,18163,18700,537,51.1,57.6,1-1-BT-A-X-I-NO-PR,TD,47914

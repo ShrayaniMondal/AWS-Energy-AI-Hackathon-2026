@@ -1,0 +1,13 @@
+well_id,well_name,api_number,operator,field,basin,county,state,spud_date,target_formation,target_tvd_ft,planned_td_ft,rig_name,well_type,latitude,longitude
+PERM-2847,Permian Basin Well 2847,42-301-12847,Workshop Energy LLC,Midland Basin,Permian,Midland,TX,2025-01-20,Wolfcamp A,7800,11200,Rig-15,Horizontal,31.9973,-102.0779
+PERM-3201,Permian Basin Well 3201,42-301-13201,Workshop Energy LLC,Delaware Basin,Permian,Loving,TX,2025-01-05,Bone Spring,11000,14500,Rig-22,Horizontal,31.7456,-103.8912
+EF-1105,Eagle Ford Well 1105,42-255-11105,Workshop Energy LLC,Eagle Ford,Western Gulf,Dimmit,TX,2025-02-01,Eagle Ford Shale,8500,12800,Rig-08,Horizontal,28.4532,-99.7654
+BAK-0892,Bakken Well 0892,33-105-00892,Workshop Energy LLC,Williston Basin,Williston,Williams,ND,2025-01-15,Three Forks,10200,21000,Rig-31,Horizontal,48.2341,-103.6218
+PERM-2901,Permian Basin Well 2901,42-329-12901,Workshop Energy LLC,Midland Basin,Permian,Martin,TX,2025-02-10,Wolfcamp B,9200,12500,Rig-17,Horizontal,32.1245,-101.9876
+PERM-4102,Permian Basin Well 4102,42-301-14102,Workshop Energy LLC,Midland Basin,Permian,Midland,TX,2025-03-01,Wolfcamp A,7900,11400,Rig-19,Horizontal,32.0145,-102.1234
+PERM-4305,Permian Basin Well 4305,42-329-14305,Workshop Energy LLC,Delaware Basin,Permian,Loving,TX,2025-02-20,Wolfcamp B,9400,12800,Rig-24,Horizontal,31.7890,-103.9456
+EF-2201,Eagle Ford Well 2201,42-255-12201,Workshop Energy LLC,Eagle Ford,Western Gulf,La Salle,TX,2025-03-05,Eagle Ford Shale,8600,13000,Rig-11,Horizontal,28.5123,-99.8012
+BAK-1456,Bakken Well 1456,33-105-01456,Workshop Energy LLC,Williston Basin,Williston,McKenzie,ND,2025-02-25,Middle Bakken,10400,21500,Rig-33,Horizontal,48.1876,-103.5543
+DL-0773,Delaware Basin Well 0773,42-301-10773,Workshop Energy LLC,Delaware Basin,Permian,Reeves,TX,2025-03-10,Bone Spring,11200,14800,Rig-27,Horizontal,31.6543,-103.7890
+PERM-5010,Permian Basin Well 5010,42-329-15010,Workshop Energy LLC,Midland Basin,Permian,Howard,TX,2025-03-15,Wolfcamp A,8000,11600,Rig-16,Horizontal,32.2345,-101.8765
+EF-3302,Eagle Ford Well 3302,42-255-13302,Workshop Energy LLC,Eagle Ford,Western Gulf,Webb,TX,2025-03-20,Eagle Ford Shale,8800,13200,Rig-09,Horizontal,28.3210,-99.6543

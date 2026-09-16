@@ -1,0 +1,50 @@
+parameter,formation,low_warning,low_critical,high_warning,high_critical,unit,description,normal_pore_pressure_ppg
+rop_ft_hr,Wolfcamp A,35,20,85,100,ft/hr,Rate of penetration bounds for Wolfcamp A,10.0
+rop_ft_hr,Wolfcamp B,30,15,70,85,ft/hr,Rate of penetration bounds for Wolfcamp B,10.2
+rop_ft_hr,Bone Spring,18,10,45,55,ft/hr,Rate of penetration bounds for Bone Spring,12.0
+rop_ft_hr,Eagle Ford Shale,45,25,95,110,ft/hr,Rate of penetration bounds for Eagle Ford,9.3
+rop_ft_hr,Three Forks,15,8,42,50,ft/hr,Rate of penetration bounds for Three Forks,11.0
+wob_klbs,Wolfcamp A,15,10,38,45,klbs,Weight on bit bounds for Wolfcamp A,10.0
+wob_klbs,Wolfcamp B,18,12,40,48,klbs,Weight on bit bounds for Wolfcamp B,10.2
+wob_klbs,Eagle Ford Shale,14,9,34,40,klbs,Weight on bit bounds for Eagle Ford Shale,9.3
+wob_klbs,Bone Spring,12,8,30,35,klbs,Weight on bit bounds for Bone Spring,12.0
+torque_ft_lbs,Eagle Ford Shale,7000,4500,15000,19000,ft-lbs,Torque bounds for Eagle Ford Shale,9.3
+torque_ft_lbs,Wolfcamp A,8000,5000,18000,22000,ft-lbs,Torque bounds for Wolfcamp A,10.0
+torque_ft_lbs,Wolfcamp B,9000,6000,20000,25000,ft-lbs,Torque bounds for Wolfcamp B,10.2
+torque_ft_lbs,Bone Spring,6000,4000,14000,18000,ft-lbs,Torque bounds for Bone Spring,12.0
+mud_weight_ppg,Wolfcamp A,9.5,9.0,11.0,11.5,ppg,Mud weight bounds for Wolfcamp A,10.0
+mud_weight_ppg,Wolfcamp B,10.0,9.5,11.5,12.0,ppg,Mud weight bounds for Wolfcamp B,10.2
+mud_weight_ppg,Bone Spring,12.0,11.5,13.5,14.0,ppg,Mud weight bounds for Bone Spring,12.0
+spp_psi,Wolfcamp A,2500,2000,4000,4500,psi,Standpipe pressure bounds for Wolfcamp A,10.0
+spp_psi,Bone Spring,3500,3000,5000,5500,psi,Standpipe pressure bounds for Bone Spring,12.0
+gas_units,Wolfcamp A,5,0,50,80,units,Background gas bounds for Wolfcamp A,10.0
+gas_units,Bone Spring,10,0,70,100,units,Background gas bounds for Bone Spring,12.0
+pit_volume_bbl,Wolfcamp A,1200,1150,1300,1350,bbl,Pit volume bounds for Wolfcamp A,10.0
+pit_volume_bbl,Bone Spring,920,900,1020,1050,bbl,Pit volume bounds for Bone Spring,12.0
+wob_klbs,Three Forks,12,8,28,35,klbs,Weight on bit bounds for Three Forks,11.0
+wob_klbs,Austin Chalk,15,10,35,42,klbs,Weight on bit bounds for Austin Chalk,9.5
+wob_klbs,Wolfcamp,12,8,30,35,klbs,Weight on bit bounds for Wolfcamp (Delaware),13.0
+torque_ft_lbs,Three Forks,5000,3000,12000,16000,ft-lbs,Torque bounds for Three Forks,11.0
+torque_ft_lbs,Austin Chalk,7000,4500,15000,19000,ft-lbs,Torque bounds for Austin Chalk,9.5
+torque_ft_lbs,Wolfcamp,6000,4000,14000,18000,ft-lbs,Torque bounds for Wolfcamp (Delaware),13.0
+mud_weight_ppg,Eagle Ford Shale,9.2,8.8,10.2,10.5,ppg,Mud weight bounds for Eagle Ford Shale,9.3
+mud_weight_ppg,Three Forks,11.0,10.5,12.0,12.5,ppg,Mud weight bounds for Three Forks,11.0
+mud_weight_ppg,Austin Chalk,9.5,9.0,10.5,11.0,ppg,Mud weight bounds for Austin Chalk,9.5
+mud_weight_ppg,Wolfcamp,12.5,12.0,13.5,14.0,ppg,Mud weight bounds for Wolfcamp (Delaware),13.0
+spp_psi,Eagle Ford Shale,2000,1500,3500,4000,psi,Standpipe pressure bounds for Eagle Ford Shale,9.3
+spp_psi,Wolfcamp B,2800,2200,4200,4800,psi,Standpipe pressure bounds for Wolfcamp B,10.2
+spp_psi,Three Forks,2800,2200,4500,5000,psi,Standpipe pressure bounds for Three Forks,11.0
+spp_psi,Austin Chalk,2200,1800,3800,4200,psi,Standpipe pressure bounds for Austin Chalk,9.5
+spp_psi,Wolfcamp,3500,3000,5000,5500,psi,Standpipe pressure bounds for Wolfcamp (Delaware),13.0
+gas_units,Eagle Ford Shale,5,0,40,65,units,Background gas bounds for Eagle Ford Shale,9.3
+gas_units,Wolfcamp B,8,0,55,85,units,Background gas bounds for Wolfcamp B,10.2
+gas_units,Three Forks,5,0,35,55,units,Background gas bounds for Three Forks,11.0
+gas_units,Austin Chalk,5,0,30,50,units,Background gas bounds for Austin Chalk,9.5
+gas_units,Wolfcamp,15,0,80,120,units,Background gas bounds for Wolfcamp (Delaware),13.0
+pit_volume_bbl,Eagle Ford Shale,1150,1100,1250,1300,bbl,Pit volume bounds for Eagle Ford Shale,9.3
+pit_volume_bbl,Wolfcamp B,1180,1130,1280,1330,bbl,Pit volume bounds for Wolfcamp B,10.2
+pit_volume_bbl,Three Forks,820,790,920,960,bbl,Pit volume bounds for Three Forks,11.0
+pit_volume_bbl,Austin Chalk,1150,1100,1250,1300,bbl,Pit volume bounds for Austin Chalk,9.5
+pit_volume_bbl,Wolfcamp,940,910,1040,1080,bbl,Pit volume bounds for Wolfcamp (Delaware),13.0
+rop_ft_hr,Austin Chalk,35,20,75,90,ft/hr,Rate of penetration bounds for Austin Chalk,9.5
+rop_ft_hr,Wolfcamp,18,10,40,50,ft/hr,Rate of penetration bounds for Wolfcamp (Delaware),13.0
