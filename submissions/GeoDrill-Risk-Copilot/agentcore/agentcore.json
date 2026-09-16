@@ -1,0 +1,35 @@
+{
+  "name": "GeoDrillRiskCopilot",
+  "version": 1,
+  "managedBy": "CDK",
+  "tags": {
+    "project": "aws-energy-ai-hackathon-2026"
+  },
+  "runtimes": [
+    {
+      "name": "geodrill_copilot",
+      "description": "Grounded synthetic seismic digital twin and drilling risk copilot.",
+      "build": "CodeZip",
+      "entrypoint": "main.py",
+      "codeLocation": "agentcore_app",
+      "runtimeVersion": "PYTHON_3_12",
+      "protocol": "HTTP",
+      "endpoints": {
+        "default": {
+          "version": 1,
+          "description": "Default judged runtime endpoint."
+        }
+      }
+    }
+  ],
+  "memories": [],
+  "knowledgeBases": [],
+  "credentials": [],
+  "evaluators": [],
+  "onlineEvalConfigs": [],
+  "agentCoreGateways": [],
+  "policyEngines": [],
+  "configBundles": [],
+  "abTests": [],
+  "harnesses": []
+}

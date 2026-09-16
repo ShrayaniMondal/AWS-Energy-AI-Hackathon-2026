@@ -1,0 +1,11 @@
+basin,formation,hole_size_in,benchmark_rop_ft_hr,benchmark_wob_klbs,benchmark_rpm,benchmark_torque_ft_lbs,benchmark_mud_weight_ppg,benchmark_days,benchmark_cost_per_ft_usd,p10_rop,p50_rop,p90_rop,sample_size
+Permian,Wolfcamp A,12.25,58,27,118,13200,10.3,4.2,185,72,58,42,145
+Permian,Wolfcamp B,12.25,50,29,114,15000,10.5,4.9,210,62,50,38,132
+Permian,Bone Spring,8.75,31,22,131,10300,12.6,6.1,245,40,31,22,98
+Permian,Spraberry,12.25,65,25,125,11500,9.8,3.5,165,78,65,48,110
+Eagle Ford,Eagle Ford Shale,12.25,70,25,133,11200,9.7,3.5,158,82,70,55,165
+Eagle Ford,Austin Chalk,12.25,62,26,126,12000,9.9,3.8,172,75,62,48,88
+Williston,Bakken,8.5,30,19,93,8500,11.4,5.2,215,38,30,22,120
+Williston,Three Forks,8.5,28,19,92,8800,11.4,5.5,225,35,28,20,95
+DJ Basin,Niobrara,12.25,55,24,120,10800,10.0,4.0,175,68,55,40,78
+Appalachian,Marcellus,8.75,45,20,110,9500,10.5,4.5,195,58,45,32,85

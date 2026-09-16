@@ -1,0 +1,40 @@
+well_id,formation,top_md_ft,top_tvd_ft,base_md_ft,base_tvd_ft,lithology,expected_mud_weight_ppg,expected_pore_pressure_ppg,fracture_gradient_ppg
+PERM-2847,Surface Casing,0,0,2500,2500,Sand/Shale,8.8,8.6,14.0
+PERM-2847,Spraberry,2500,2500,5500,5500,Siltstone/Shale,9.5,9.2,13.5
+PERM-2847,Dean,5500,5500,7200,7000,Sandstone/Shale,9.8,9.5,13.2
+PERM-2847,Wolfcamp A,7500,7200,8500,8100,Limestone/Shale,10.3,10.0,13.0
+PERM-2847,Wolfcamp B,8500,8100,9500,8800,Limestone/Shale,10.6,10.2,12.8
+PERM-2847,Wolfcamp C,9500,8800,11200,9500,Shale/Limestone,10.8,10.4,12.5
+PERM-3201,Surface Casing,0,0,3000,3000,Sand/Gravel,9.0,8.7,14.5
+PERM-3201,Bone Spring Upper,3000,3000,8500,8000,Limestone/Dolomite,10.5,10.0,13.5
+PERM-3201,Bone Spring Lower,8500,8000,12000,11200,Sandstone/Limestone,12.6,12.0,14.0
+PERM-3201,Wolfcamp,12000,11200,14500,12500,Shale/Limestone,13.0,12.5,14.5
+EF-1105,Surface Casing,0,0,2000,2000,Sand/Clay,8.6,8.4,14.0
+EF-1105,Pearsall Shale,2000,2000,6500,6200,Shale/Limestone,9.2,8.9,13.5
+EF-1105,Eagle Ford Shale,6500,6200,9800,8900,Shale/Limestone,9.7,9.3,13.0
+EF-1105,Austin Chalk,9800,8900,12800,10500,Chalk/Limestone,9.9,9.5,12.8
+BAK-0892,Surface Casing,0,0,2500,2500,Glacial Till,9.0,8.7,14.0
+BAK-0892,Bakken,2500,2500,9500,9200,Shale/Dolomite,11.0,10.5,13.5
+BAK-0892,Three Forks,9500,9200,21000,9800,Dolomite/Siltstone,11.5,11.0,13.0
+PERM-4102,Surface Casing,0,0,2600,2600,Sand/Shale,8.9,8.7,14.1
+PERM-4102,Spraberry,2600,2600,5600,5600,Siltstone/Shale,9.6,9.3,13.6
+PERM-4102,Dean,5600,5600,7300,7100,Sandstone/Shale,9.9,9.6,13.3
+PERM-4102,Wolfcamp A,7600,7300,8600,8200,Limestone/Shale,10.4,10.1,13.1
+PERM-4102,Wolfcamp B,8600,8200,9600,8900,Limestone/Shale,10.7,10.3,12.9
+PERM-4305,Surface Casing,0,0,2800,2800,Sand/Gravel,9.1,8.8,14.4
+PERM-4305,Bone Spring Upper,2800,2800,8200,7800,Limestone/Dolomite,10.4,9.9,13.4
+PERM-4305,Bone Spring Lower,8200,7800,9400,8800,Sandstone/Limestone,10.8,10.4,13.0
+PERM-4305,Wolfcamp A,9400,8800,10800,9800,Limestone/Shale,11.2,10.8,13.2
+PERM-4305,Wolfcamp B,10800,9800,12800,11200,Shale/Limestone,11.6,11.2,13.5
+EF-2201,Surface Casing,0,0,2100,2100,Sand/Clay,8.7,8.5,14.1
+EF-2201,Pearsall Shale,2100,2100,6600,6300,Shale/Limestone,9.3,9.0,13.6
+EF-2201,Eagle Ford Shale,6600,6300,9900,9000,Shale/Limestone,9.8,9.4,13.1
+EF-2201,Austin Chalk,9900,9000,13000,10600,Chalk/Limestone,10.0,9.6,12.9
+BAK-1456,Surface Casing,0,0,2600,2600,Glacial Till,9.1,8.8,14.1
+BAK-1456,Bakken Upper,2600,2600,9600,9300,Shale/Dolomite,11.1,10.6,13.6
+BAK-1456,Middle Bakken,9600,9300,10400,10000,Siltstone/Dolomite,11.3,10.8,13.2
+BAK-1456,Three Forks,10400,10000,21500,10200,Dolomite/Siltstone,11.6,11.1,13.1
+DL-0773,Surface Casing,0,0,3100,3100,Sand/Gravel,9.2,8.9,14.6
+DL-0773,Bone Spring Upper,3100,3100,8800,8200,Limestone/Dolomite,10.6,10.1,13.6
+DL-0773,Bone Spring Lower,8800,8200,12200,11400,Sandstone/Limestone,12.7,12.1,14.1
+DL-0773,Wolfcamp,12200,11400,14800,12700,Shale/Limestone,13.1,12.6,14.6

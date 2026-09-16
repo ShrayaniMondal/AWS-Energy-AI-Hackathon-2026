@@ -1,0 +1,187 @@
+well_name,depth_ft,formation,lithology,c1_pct,c2_pct,c3_pct,ic4_pct,nc4_pct,c5_pct,total_gas_units,rop_fthr,show_description
+Midland State A 1H,8800,Wolfcamp A,Organic shale / carbonate,1.5,0.145,0.038,0.005,0.005,0.003,1.696,90.8,No show
+Midland State A 1H,8830,Wolfcamp A,Organic shale / carbonate,6.613,0.921,0.21,0.039,0.038,0.014,7.835,157.8,Good gas show
+Midland State A 1H,8860,Wolfcamp A,Organic shale / carbonate,3.876,0.485,0.171,0.016,0.018,0.009,4.575,58.3,Gas show
+Midland State A 1H,8890,Wolfcamp A,Organic shale / carbonate,3.799,0.461,0.079,0.008,0.009,0.003,4.359,44.1,Gas show
+Midland State A 1H,8920,Wolfcamp A,Organic shale / carbonate,3.373,0.22,0.036,0.004,0.004,0.002,3.639,30.0,Gas show
+Midland State A 1H,8950,Wolfcamp A,Organic shale / carbonate,6.747,0.6,0.199,0.038,0.031,0.02,7.635,112.1,Good gas show
+Midland State A 1H,8980,Wolfcamp A,Organic shale / carbonate,4.077,0.588,0.111,0.012,0.014,0.009,4.811,106.1,Gas show
+Midland State A 1H,9010,Wolfcamp A,Organic shale / carbonate,6.01,0.781,0.288,0.035,0.032,0.016,7.162,82.2,Good gas show
+Midland State A 1H,9040,Wolfcamp A,Organic shale / carbonate,5.517,0.716,0.227,0.04,0.047,0.033,6.58,105.5,Good gas show
+Midland State A 1H,9070,Wolfcamp A,Organic shale / carbonate,7.302,0.797,0.238,0.015,0.015,0.01,8.377,49.1,Good gas show
+Midland State A 1H,9100,Wolfcamp A,Organic shale / carbonate,2.451,0.203,0.048,0.005,0.006,0.002,2.715,172.2,Gas show
+Midland State A 1H,9130,Wolfcamp A,Organic shale / carbonate,3.662,0.489,0.118,0.019,0.016,0.011,4.315,55.9,Gas show
+Midland State A 1H,9160,Wolfcamp A,Organic shale / carbonate,1.015,0.148,0.017,0.001,0.001,0.001,1.183,119.4,No show
+Midland State A 1H,9190,Wolfcamp A,Organic shale / carbonate,2.289,0.223,0.03,0.006,0.006,0.002,2.556,79.0,Gas show
+Midland State A 1H,9220,Wolfcamp A,Organic shale / carbonate,5.044,0.738,0.233,0.039,0.034,0.014,6.102,112.6,Good gas show
+Midland State A 1H,9250,Wolfcamp A,Organic shale / carbonate,7.467,0.803,0.299,0.032,0.038,0.014,8.653,114.7,Good gas show
+Midland State A 1H,9280,Wolfcamp A,Organic shale / carbonate,6.729,0.5,0.155,0.015,0.016,0.01,7.425,147.4,Good gas show
+Midland State A 1H,9310,Wolfcamp A,Organic shale / carbonate,4.744,0.257,0.067,0.01,0.008,0.004,5.09,22.0,Good gas show
+Midland State A 1H,9340,Wolfcamp A,Organic shale / carbonate,3.65,0.361,0.083,0.009,0.01,0.005,4.118,44.5,Gas show
+Midland State A 1H,9370,Wolfcamp A,Organic shale / carbonate,1.821,0.186,0.055,0.008,0.009,0.005,2.084,94.4,Gas show
+Midland State A 1H,9400,Wolfcamp A,Organic shale / carbonate,6.693,0.731,0.144,0.013,0.015,0.006,7.602,92.1,Good gas show
+Midland State A 1H,9430,Wolfcamp A,Organic shale / carbonate,6.129,0.656,0.197,0.02,0.02,0.009,7.031,98.0,Good gas show
+Midland State A 1H,9460,Wolfcamp A,Organic shale / carbonate,3.161,0.24,0.044,0.006,0.007,0.004,3.462,102.7,Gas show
+Midland State A 1H,9490,Wolfcamp A,Organic shale / carbonate,1.933,0.143,0.032,0.004,0.004,0.002,2.118,133.9,Gas show
+Midland State A 1H,9520,Wolfcamp A,Organic shale / carbonate,3.861,0.2,0.038,0.004,0.004,0.002,4.109,79.0,Gas show
+Midland State A 1H,9550,Wolfcamp A,Organic shale / carbonate,4.651,0.392,0.156,0.021,0.02,0.01,5.25,69.1,Good gas show
+Midland State A 1H,9580,Wolfcamp A,Organic shale / carbonate,2.229,0.272,0.053,0.009,0.011,0.006,2.58,50.6,Gas show
+Midland State A 1H,9610,Wolfcamp A,Organic shale / carbonate,6.04,0.469,0.13,0.021,0.022,0.015,6.697,153.2,Good gas show
+Midland State A 1H,9640,Wolfcamp A,Organic shale / carbonate,2.722,0.234,0.045,0.007,0.006,0.002,3.016,28.7,Gas show
+Midland State A 1H,9670,Wolfcamp A,Organic shale / carbonate,2.691,0.389,0.113,0.018,0.015,0.005,3.231,65.5,Gas show
+Midland State A 1H,9700,Wolfcamp A,Organic shale / carbonate,4.09,0.344,0.134,0.012,0.014,0.005,4.599,30.5,Gas show
+Midland State A 1H,9730,Wolfcamp A,Organic shale / carbonate,4.188,0.451,0.138,0.01,0.011,0.007,4.805,33.6,Gas show
+Midland State A 1H,9760,Wolfcamp A,Organic shale / carbonate,2.361,0.25,0.056,0.008,0.008,0.005,2.688,80.9,Gas show
+Midland State A 1H,9790,Wolfcamp A,Organic shale / carbonate,7.314,0.583,0.161,0.018,0.018,0.006,8.1,173.6,Good gas show
+Midland State A 1H,9820,Wolfcamp A,Organic shale / carbonate,1.244,0.157,0.045,0.004,0.003,0.001,1.454,108.3,No show
+Midland State A 1H,9850,Wolfcamp A,Organic shale / carbonate,1.674,0.152,0.047,0.006,0.005,0.002,1.886,65.2,No show
+Midland State A 1H,9880,Wolfcamp A,Organic shale / carbonate,6.947,0.397,0.068,0.006,0.007,0.004,7.429,148.6,Good gas show
+Midland State B 2H,7200,Spraberry,Siltstone / fine sandstone,1.984,0.122,0.02,0.001,0.001,0.0,2.128,29.5,Gas show
+Midland State B 2H,7230,Spraberry,Siltstone / fine sandstone,6.445,0.706,0.245,0.046,0.045,0.022,7.509,68.7,Good gas show
+Midland State B 2H,7260,Spraberry,Siltstone / fine sandstone,3.519,0.272,0.071,0.008,0.008,0.005,3.883,137.5,Gas show
+Midland State B 2H,7290,Spraberry,Siltstone / fine sandstone,5.028,0.264,0.045,0.007,0.008,0.004,5.356,23.3,Good gas show
+Midland State B 2H,7320,Spraberry,Siltstone / fine sandstone,6.236,0.824,0.225,0.037,0.032,0.016,7.37,90.8,Good gas show
+Midland State B 2H,7350,Spraberry,Siltstone / fine sandstone,2.586,0.387,0.089,0.015,0.018,0.009,3.104,85.3,Gas show
+Midland State B 2H,7380,Spraberry,Siltstone / fine sandstone,2.908,0.176,0.026,0.003,0.003,0.002,3.118,84.1,Gas show
+Midland State B 2H,7410,Spraberry,Siltstone / fine sandstone,6.204,0.333,0.042,0.004,0.003,0.002,6.588,158.4,Good gas show
+Midland State B 2H,7440,Spraberry,Siltstone / fine sandstone,6.687,0.335,0.121,0.014,0.012,0.006,7.175,119.6,Good gas show
+Midland State B 2H,7470,Spraberry,Siltstone / fine sandstone,4.239,0.399,0.046,0.004,0.003,0.001,4.692,160.9,Gas show
+Midland State B 2H,7500,Spraberry,Siltstone / fine sandstone,4.135,0.219,0.063,0.011,0.012,0.005,4.445,22.2,Gas show
+Midland State B 2H,7530,Spraberry,Siltstone / fine sandstone,3.56,0.258,0.091,0.006,0.007,0.004,3.926,44.6,Gas show
+Midland State B 2H,7560,Spraberry,Siltstone / fine sandstone,7.495,0.594,0.185,0.021,0.021,0.01,8.326,93.1,Good gas show
+Midland State B 2H,7590,Spraberry,Siltstone / fine sandstone,1.585,0.109,0.03,0.005,0.004,0.001,1.734,143.6,No show
+Midland State B 2H,7620,Spraberry,Siltstone / fine sandstone,6.908,0.58,0.195,0.018,0.014,0.008,7.723,154.0,Good gas show
+Midland State B 2H,7650,Spraberry,Siltstone / fine sandstone,4.849,0.562,0.202,0.024,0.024,0.01,5.671,142.1,Good gas show
+Midland State B 2H,7680,Spraberry,Siltstone / fine sandstone,3.329,0.477,0.172,0.034,0.03,0.014,4.056,157.0,Gas show
+Midland State B 2H,7710,Spraberry,Siltstone / fine sandstone,3.581,0.293,0.071,0.013,0.012,0.008,3.978,146.8,Gas show
+Midland State B 2H,7740,Spraberry,Siltstone / fine sandstone,5.39,0.351,0.137,0.009,0.011,0.005,5.903,36.1,Good gas show
+Midland State B 2H,7770,Spraberry,Siltstone / fine sandstone,6.838,0.41,0.153,0.008,0.007,0.005,7.421,175.2,Good gas show
+Midland State B 2H,7800,Spraberry,Siltstone / fine sandstone,1.061,0.136,0.024,0.003,0.003,0.001,1.228,72.6,No show
+Midland State B 2H,7830,Spraberry,Siltstone / fine sandstone,5.558,0.574,0.222,0.032,0.037,0.018,6.441,106.6,Good gas show
+Midland State B 2H,7860,Spraberry,Siltstone / fine sandstone,5.131,0.377,0.115,0.011,0.01,0.003,5.647,176.5,Good gas show
+Midland State B 2H,7890,Spraberry,Siltstone / fine sandstone,6.203,0.747,0.097,0.007,0.006,0.002,7.062,71.9,Good gas show
+Midland State B 2H,7920,Spraberry,Siltstone / fine sandstone,0.921,0.079,0.018,0.002,0.002,0.001,1.023,48.8,No show
+Midland State B 2H,7950,Spraberry,Siltstone / fine sandstone,1.813,0.201,0.043,0.007,0.007,0.004,2.075,57.2,Gas show
+Midland State B 2H,7980,Spraberry,Siltstone / fine sandstone,5.284,0.507,0.152,0.028,0.028,0.012,6.011,107.5,Good gas show
+Midland State B 2H,8010,Spraberry,Siltstone / fine sandstone,1.054,0.152,0.06,0.006,0.007,0.004,1.283,93.1,No show
+Midland State B 2H,8040,Spraberry,Siltstone / fine sandstone,2.766,0.415,0.148,0.01,0.01,0.004,3.353,67.3,Gas show
+Midland State B 2H,8070,Spraberry,Siltstone / fine sandstone,5.745,0.3,0.105,0.011,0.009,0.006,6.176,144.5,Good gas show
+Midland State B 2H,8100,Spraberry,Siltstone / fine sandstone,7.802,1.101,0.356,0.062,0.072,0.044,9.437,56.8,Good gas show
+Midland State B 2H,8130,Spraberry,Siltstone / fine sandstone,6.514,0.468,0.073,0.006,0.007,0.004,7.072,128.9,Good gas show
+Midland State B 2H,8160,Spraberry,Siltstone / fine sandstone,1.526,0.091,0.026,0.001,0.001,0.0,1.645,78.4,No show
+Midland State B 2H,8190,Spraberry,Siltstone / fine sandstone,1.486,0.209,0.041,0.005,0.004,0.002,1.747,160.2,No show
+Midland State B 2H,8220,Spraberry,Siltstone / fine sandstone,3.244,0.325,0.059,0.004,0.005,0.003,3.64,174.8,Gas show
+Midland State B 2H,8250,Spraberry,Siltstone / fine sandstone,2.714,0.372,0.127,0.015,0.012,0.007,3.247,56.1,Gas show
+Midland State B 2H,8280,Spraberry,Siltstone / fine sandstone,5.572,0.654,0.143,0.025,0.026,0.009,6.429,83.1,Good gas show
+Midland State B 2H,8310,Spraberry,Siltstone / fine sandstone,2.483,0.155,0.033,0.005,0.005,0.002,2.683,122.2,Gas show
+Midland State B 2H,8340,Spraberry,Siltstone / fine sandstone,3.286,0.386,0.093,0.013,0.015,0.006,3.799,117.6,Gas show
+Midland State B 2H,8370,Spraberry,Siltstone / fine sandstone,5.357,0.608,0.145,0.022,0.023,0.008,6.163,27.3,Good gas show
+Midland State B 2H,8400,Spraberry,Siltstone / fine sandstone,0.779,0.117,0.016,0.001,0.001,0.0,0.914,79.4,No show
+Reagan County C 3H,8800,Wolfcamp A,Organic shale / carbonate,7.62,0.912,0.239,0.033,0.036,0.024,8.864,124.8,Good gas show
+Reagan County C 3H,8830,Wolfcamp A,Organic shale / carbonate,6.753,0.753,0.287,0.026,0.028,0.011,7.858,91.2,Good gas show
+Reagan County C 3H,8860,Wolfcamp A,Organic shale / carbonate,2.271,0.196,0.077,0.008,0.009,0.005,2.566,29.7,Gas show
+Reagan County C 3H,8890,Wolfcamp A,Organic shale / carbonate,2.569,0.377,0.145,0.025,0.021,0.008,3.145,122.3,Gas show
+Reagan County C 3H,8920,Wolfcamp A,Organic shale / carbonate,7.783,0.429,0.086,0.017,0.019,0.007,8.341,152.8,Good gas show
+Reagan County C 3H,8950,Wolfcamp A,Organic shale / carbonate,4.657,0.506,0.174,0.015,0.017,0.01,5.379,115.4,Good gas show
+Reagan County C 3H,8980,Wolfcamp A,Organic shale / carbonate,2.58,0.383,0.152,0.02,0.022,0.008,3.165,158.6,Gas show
+Reagan County C 3H,9010,Wolfcamp A,Organic shale / carbonate,1.489,0.128,0.043,0.006,0.005,0.002,1.673,40.3,No show
+Reagan County C 3H,9040,Wolfcamp A,Organic shale / carbonate,3.657,0.224,0.027,0.003,0.003,0.002,3.916,92.3,Gas show
+Reagan County C 3H,9070,Wolfcamp A,Organic shale / carbonate,2.162,0.241,0.077,0.014,0.015,0.006,2.515,122.9,Gas show
+Reagan County C 3H,9100,Wolfcamp A,Organic shale / carbonate,0.734,0.11,0.039,0.004,0.003,0.002,0.892,91.0,No show
+Reagan County C 3H,9130,Wolfcamp A,Organic shale / carbonate,7.245,0.596,0.086,0.006,0.006,0.003,7.942,133.9,Good gas show
+Reagan County C 3H,9160,Wolfcamp A,Organic shale / carbonate,3.357,0.368,0.069,0.009,0.009,0.006,3.818,38.3,Gas show
+Reagan County C 3H,9190,Wolfcamp A,Organic shale / carbonate,5.41,0.745,0.198,0.036,0.035,0.023,6.447,86.2,Good gas show
+Reagan County C 3H,9220,Wolfcamp A,Organic shale / carbonate,6.706,0.603,0.192,0.019,0.018,0.007,7.545,172.6,Good gas show
+Reagan County C 3H,9250,Wolfcamp A,Organic shale / carbonate,5.651,0.551,0.07,0.004,0.004,0.002,6.282,79.6,Good gas show
+Reagan County C 3H,9280,Wolfcamp A,Organic shale / carbonate,1.476,0.083,0.032,0.004,0.004,0.002,1.601,159.8,No show
+Reagan County C 3H,9310,Wolfcamp A,Organic shale / carbonate,7.558,0.698,0.262,0.015,0.014,0.006,8.553,36.6,Good gas show
+Reagan County C 3H,9340,Wolfcamp A,Organic shale / carbonate,4.306,0.282,0.069,0.012,0.011,0.006,4.686,38.4,Gas show
+Reagan County C 3H,9370,Wolfcamp A,Organic shale / carbonate,2.589,0.188,0.043,0.006,0.007,0.004,2.837,128.0,Gas show
+Reagan County C 3H,9400,Wolfcamp A,Organic shale / carbonate,4.676,0.519,0.154,0.024,0.019,0.008,5.4,142.0,Good gas show
+Reagan County C 3H,9430,Wolfcamp A,Organic shale / carbonate,7.412,0.631,0.097,0.007,0.007,0.002,8.156,138.6,Good gas show
+Reagan County C 3H,9460,Wolfcamp A,Organic shale / carbonate,7.789,0.461,0.119,0.013,0.013,0.005,8.4,69.9,Good gas show
+Reagan County C 3H,9490,Wolfcamp A,Organic shale / carbonate,2.933,0.423,0.118,0.022,0.019,0.011,3.526,28.0,Gas show
+Reagan County C 3H,9520,Wolfcamp A,Organic shale / carbonate,1.112,0.105,0.024,0.003,0.003,0.001,1.248,102.0,No show
+Reagan County C 3H,9550,Wolfcamp A,Organic shale / carbonate,3.089,0.189,0.057,0.008,0.008,0.003,3.354,55.3,Gas show
+Reagan County C 3H,9580,Wolfcamp A,Organic shale / carbonate,7.883,0.437,0.07,0.013,0.014,0.008,8.425,66.3,Good gas show
+Reagan County C 3H,9610,Wolfcamp A,Organic shale / carbonate,1.4,0.14,0.032,0.002,0.002,0.001,1.577,109.4,No show
+Reagan County C 3H,9640,Wolfcamp A,Organic shale / carbonate,5.51,0.471,0.103,0.017,0.017,0.008,6.126,32.5,Good gas show
+Reagan County C 3H,9670,Wolfcamp A,Organic shale / carbonate,2.848,0.265,0.059,0.009,0.008,0.004,3.193,174.6,Gas show
+Reagan County C 3H,9700,Wolfcamp A,Organic shale / carbonate,1.789,0.259,0.062,0.01,0.009,0.004,2.133,36.9,Gas show
+Reagan County C 3H,9730,Wolfcamp A,Organic shale / carbonate,3.768,0.339,0.042,0.008,0.009,0.003,4.169,144.7,Gas show
+Reagan County C 3H,9760,Wolfcamp A,Organic shale / carbonate,1.073,0.122,0.032,0.003,0.003,0.001,1.234,173.3,No show
+Reagan County C 3H,9790,Wolfcamp A,Organic shale / carbonate,5.341,0.346,0.045,0.004,0.003,0.001,5.74,141.5,Good gas show
+Reagan County C 3H,9820,Wolfcamp A,Organic shale / carbonate,1.065,0.155,0.045,0.005,0.005,0.003,1.278,129.0,No show
+Reagan County C 3H,9850,Wolfcamp A,Organic shale / carbonate,7.115,0.813,0.322,0.032,0.038,0.016,8.336,90.4,Good gas show
+Reagan County C 3H,9880,Wolfcamp A,Organic shale / carbonate,4.017,0.454,0.154,0.021,0.02,0.007,4.673,93.9,Gas show
+Upton County D 4H,9200,Bone Spring,Carbonate / siliciclastic,0.782,0.068,0.013,0.002,0.002,0.001,0.868,115.1,No show
+Upton County D 4H,9230,Bone Spring,Carbonate / siliciclastic,3.384,0.366,0.141,0.023,0.019,0.013,3.946,111.5,Gas show
+Upton County D 4H,9260,Bone Spring,Carbonate / siliciclastic,1.912,0.211,0.053,0.01,0.01,0.006,2.202,154.0,Gas show
+Upton County D 4H,9290,Bone Spring,Carbonate / siliciclastic,7.868,0.46,0.135,0.008,0.009,0.006,8.486,103.9,Good gas show
+Upton County D 4H,9320,Bone Spring,Carbonate / siliciclastic,5.074,0.438,0.164,0.018,0.02,0.011,5.725,28.4,Good gas show
+Upton County D 4H,9350,Bone Spring,Carbonate / siliciclastic,5.232,0.437,0.087,0.012,0.011,0.004,5.783,156.3,Good gas show
+Upton County D 4H,9380,Bone Spring,Carbonate / siliciclastic,7.733,0.853,0.124,0.008,0.009,0.006,8.733,69.6,Good gas show
+Upton County D 4H,9410,Bone Spring,Carbonate / siliciclastic,5.42,0.63,0.087,0.014,0.012,0.006,6.169,123.0,Good gas show
+Upton County D 4H,9440,Bone Spring,Carbonate / siliciclastic,2.964,0.186,0.058,0.011,0.013,0.009,3.241,35.0,Gas show
+Upton County D 4H,9470,Bone Spring,Carbonate / siliciclastic,5.528,0.557,0.059,0.006,0.007,0.003,6.16,142.6,Good gas show
+Upton County D 4H,9500,Bone Spring,Carbonate / siliciclastic,1.94,0.291,0.043,0.004,0.004,0.002,2.284,106.4,Gas show
+Upton County D 4H,9530,Bone Spring,Carbonate / siliciclastic,6.04,0.62,0.185,0.034,0.036,0.019,6.934,44.7,Good gas show
+Upton County D 4H,9560,Bone Spring,Carbonate / siliciclastic,1.856,0.221,0.064,0.012,0.013,0.004,2.17,78.3,Gas show
+Upton County D 4H,9590,Bone Spring,Carbonate / siliciclastic,5.897,0.867,0.246,0.04,0.045,0.018,7.113,58.3,Good gas show
+Upton County D 4H,9620,Bone Spring,Carbonate / siliciclastic,7.742,0.994,0.369,0.029,0.031,0.016,9.181,90.5,Good gas show
+Upton County D 4H,9650,Bone Spring,Carbonate / siliciclastic,6.271,0.802,0.201,0.023,0.02,0.008,7.325,116.7,Good gas show
+Upton County D 4H,9680,Bone Spring,Carbonate / siliciclastic,7.048,0.389,0.095,0.01,0.012,0.007,7.561,102.5,Good gas show
+Upton County D 4H,9710,Bone Spring,Carbonate / siliciclastic,1.435,0.084,0.012,0.001,0.001,0.001,1.534,34.7,No show
+Upton County D 4H,9740,Bone Spring,Carbonate / siliciclastic,7.329,0.965,0.353,0.067,0.065,0.03,8.809,79.8,Good gas show
+Upton County D 4H,9770,Bone Spring,Carbonate / siliciclastic,3.396,0.198,0.033,0.003,0.003,0.002,3.635,73.6,Gas show
+Upton County D 4H,9800,Bone Spring,Carbonate / siliciclastic,1.595,0.086,0.032,0.004,0.005,0.003,1.725,95.1,No show
+Upton County D 4H,9830,Bone Spring,Carbonate / siliciclastic,5.115,0.719,0.076,0.006,0.005,0.003,5.924,117.4,Good gas show
+Upton County D 4H,9860,Bone Spring,Carbonate / siliciclastic,3.674,0.469,0.08,0.005,0.004,0.002,4.234,119.6,Gas show
+Upton County D 4H,9890,Bone Spring,Carbonate / siliciclastic,0.971,0.13,0.032,0.004,0.004,0.002,1.143,135.0,No show
+Upton County D 4H,9920,Bone Spring,Carbonate / siliciclastic,2.685,0.135,0.028,0.004,0.003,0.002,2.857,103.8,Gas show
+Upton County D 4H,9950,Bone Spring,Carbonate / siliciclastic,3.205,0.466,0.123,0.021,0.021,0.006,3.842,159.7,Gas show
+Upton County D 4H,9980,Bone Spring,Carbonate / siliciclastic,0.827,0.073,0.015,0.002,0.002,0.001,0.92,58.6,No show
+Upton County D 4H,10010,Bone Spring,Carbonate / siliciclastic,5.428,0.328,0.09,0.015,0.013,0.006,5.88,74.2,Good gas show
+Upton County D 4H,10040,Bone Spring,Carbonate / siliciclastic,5.321,0.708,0.216,0.043,0.043,0.016,6.347,41.6,Good gas show
+Upton County D 4H,10070,Bone Spring,Carbonate / siliciclastic,5.87,0.847,0.094,0.008,0.009,0.006,6.834,70.5,Good gas show
+Upton County D 4H,10100,Bone Spring,Carbonate / siliciclastic,2.826,0.254,0.088,0.011,0.009,0.005,3.193,65.8,Gas show
+Upton County D 4H,10130,Bone Spring,Carbonate / siliciclastic,6.966,0.382,0.113,0.01,0.011,0.005,7.487,84.0,Good gas show
+Upton County D 4H,10160,Bone Spring,Carbonate / siliciclastic,3.798,0.553,0.112,0.009,0.01,0.004,4.486,147.6,Gas show
+Upton County D 4H,10190,Bone Spring,Carbonate / siliciclastic,2.5,0.146,0.033,0.004,0.005,0.002,2.69,67.0,Gas show
+Midland State E 5H,8800,Wolfcamp A,Organic shale / carbonate,1.269,0.105,0.02,0.002,0.002,0.001,1.399,91.0,No show
+Midland State E 5H,8830,Wolfcamp A,Organic shale / carbonate,3.853,0.473,0.177,0.025,0.024,0.013,4.565,146.6,Gas show
+Midland State E 5H,8860,Wolfcamp A,Organic shale / carbonate,0.93,0.109,0.024,0.003,0.003,0.001,1.07,25.0,No show
+Midland State E 5H,8890,Wolfcamp A,Organic shale / carbonate,6.865,0.809,0.187,0.013,0.012,0.007,7.893,77.9,Good gas show
+Midland State E 5H,8920,Wolfcamp A,Organic shale / carbonate,7.621,0.406,0.059,0.007,0.007,0.003,8.103,32.3,Good gas show
+Midland State E 5H,8950,Wolfcamp A,Organic shale / carbonate,1.533,0.133,0.026,0.002,0.002,0.001,1.697,49.8,No show
+Midland State E 5H,8980,Wolfcamp A,Organic shale / carbonate,4.383,0.62,0.084,0.014,0.015,0.006,5.122,117.9,Good gas show
+Midland State E 5H,9010,Wolfcamp A,Organic shale / carbonate,5.705,0.855,0.137,0.01,0.008,0.003,6.718,134.1,Good gas show
+Midland State E 5H,9040,Wolfcamp A,Organic shale / carbonate,7.979,1.046,0.408,0.081,0.086,0.05,9.65,108.0,Good gas show
+Midland State E 5H,9070,Wolfcamp A,Organic shale / carbonate,2.678,0.214,0.032,0.005,0.005,0.002,2.936,77.8,Gas show
+Midland State E 5H,9100,Wolfcamp A,Organic shale / carbonate,2.182,0.324,0.109,0.009,0.009,0.004,2.637,111.6,Gas show
+Midland State E 5H,9130,Wolfcamp A,Organic shale / carbonate,4.006,0.594,0.083,0.015,0.012,0.006,4.716,134.7,Gas show
+Midland State E 5H,9160,Wolfcamp A,Organic shale / carbonate,4.09,0.373,0.083,0.011,0.009,0.004,4.57,31.9,Gas show
+Midland State E 5H,9190,Wolfcamp A,Organic shale / carbonate,3.994,0.406,0.056,0.01,0.01,0.005,4.481,142.8,Gas show
+Midland State E 5H,9220,Wolfcamp A,Organic shale / carbonate,1.468,0.147,0.053,0.009,0.009,0.004,1.69,45.9,No show
+Midland State E 5H,9250,Wolfcamp A,Organic shale / carbonate,7.511,0.545,0.209,0.027,0.025,0.008,8.325,51.4,Good gas show
+Midland State E 5H,9280,Wolfcamp A,Organic shale / carbonate,7.673,0.594,0.171,0.024,0.02,0.011,8.493,114.7,Good gas show
+Midland State E 5H,9310,Wolfcamp A,Organic shale / carbonate,4.855,0.326,0.094,0.017,0.016,0.011,5.319,26.6,Good gas show
+Midland State E 5H,9340,Wolfcamp A,Organic shale / carbonate,6.978,0.406,0.156,0.026,0.024,0.009,7.599,111.5,Good gas show
+Midland State E 5H,9370,Wolfcamp A,Organic shale / carbonate,5.136,0.272,0.1,0.013,0.014,0.006,5.541,59.2,Good gas show
+Midland State E 5H,9400,Wolfcamp A,Organic shale / carbonate,6.555,0.594,0.14,0.021,0.018,0.008,7.336,94.3,Good gas show
+Midland State E 5H,9430,Wolfcamp A,Organic shale / carbonate,3.051,0.196,0.07,0.007,0.008,0.004,3.336,83.8,Gas show
+Midland State E 5H,9460,Wolfcamp A,Organic shale / carbonate,6.205,0.63,0.083,0.007,0.006,0.003,6.934,42.5,Good gas show
+Midland State E 5H,9490,Wolfcamp A,Organic shale / carbonate,0.88,0.127,0.046,0.005,0.006,0.004,1.068,150.2,No show
+Midland State E 5H,9520,Wolfcamp A,Organic shale / carbonate,7.503,0.916,0.144,0.011,0.013,0.006,8.593,160.7,Good gas show
+Midland State E 5H,9550,Wolfcamp A,Organic shale / carbonate,4.23,0.25,0.054,0.006,0.005,0.003,4.548,27.8,Gas show
+Midland State E 5H,9580,Wolfcamp A,Organic shale / carbonate,2.61,0.286,0.101,0.015,0.014,0.004,3.03,37.2,Gas show
+Midland State E 5H,9610,Wolfcamp A,Organic shale / carbonate,1.505,0.115,0.024,0.003,0.002,0.001,1.65,109.9,No show
+Midland State E 5H,9640,Wolfcamp A,Organic shale / carbonate,3.219,0.254,0.055,0.006,0.006,0.004,3.544,119.7,Gas show
+Midland State E 5H,9670,Wolfcamp A,Organic shale / carbonate,5.083,0.32,0.041,0.004,0.005,0.003,5.456,78.5,Good gas show
+Midland State E 5H,9700,Wolfcamp A,Organic shale / carbonate,1.582,0.174,0.038,0.002,0.002,0.001,1.799,148.6,No show
+Midland State E 5H,9730,Wolfcamp A,Organic shale / carbonate,4.395,0.285,0.105,0.007,0.008,0.003,4.803,82.9,Gas show
+Midland State E 5H,9760,Wolfcamp A,Organic shale / carbonate,5.124,0.688,0.191,0.024,0.024,0.012,6.063,110.1,Good gas show
+Midland State E 5H,9790,Wolfcamp A,Organic shale / carbonate,4.062,0.21,0.042,0.003,0.003,0.001,4.321,163.8,Gas show
+Midland State E 5H,9820,Wolfcamp A,Organic shale / carbonate,7.041,0.795,0.222,0.02,0.021,0.014,8.113,112.6,Good gas show
+Midland State E 5H,9850,Wolfcamp A,Organic shale / carbonate,2.207,0.122,0.03,0.004,0.004,0.002,2.369,80.8,Gas show
+Midland State E 5H,9880,Wolfcamp A,Organic shale / carbonate,6.662,0.494,0.134,0.021,0.018,0.009,7.338,87.0,Good gas show

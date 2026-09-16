@@ -1,0 +1,19 @@
+npt_code,npt_category,npt_subcategory,description,avg_duration_hours,frequency_per_well
+EQ-BIT,equipment,bit_failure,Bit failure requiring trip,8,0.8
+EQ-MUD,equipment,mud_system,Mud system equipment failure,4,0.5
+EQ-PUMP,equipment,mud_pump,Mud pump failure or maintenance,6,0.3
+EQ-TDS,equipment,top_drive,Top drive system failure,12,0.2
+EQ-BOP,equipment,bop,BOP testing or repair,8,0.4
+WX-LIGHT,weather,lightning,Lightning within safety radius,3,1.2
+WX-WIND,weather,high_wind,Wind exceeding crane limits,6,0.8
+WX-ICE,weather,ice_storm,Ice storm - road closures,12,0.3
+WB-KICK,wellbore,kick,Well control event - kick,8,0.1
+WB-LOSS,wellbore,lost_circulation,Lost circulation event,12,0.4
+WB-TIGHT,wellbore,tight_hole,Tight hole - stuck pipe risk,6,0.6
+WB-DIFF,wellbore,differential_sticking,Differential sticking event,18,0.15
+LOG-WAIT,logistics,waiting_on_equipment,Waiting on equipment delivery,8,0.5
+LOG-CREW,logistics,crew_change,Extended crew change delay,4,0.2
+LOG-SUPPLY,logistics,supply_chain,Supply chain delay - chemicals or materials,6,0.3
+PLAN-SURVEY,planned,survey,MWD/LWD survey operations,2,3.0
+PLAN-CASE,planned,casing,Casing running operations,12,1.0
+PLAN-CEMENT,planned,cementing,Cementing operations,8,1.0

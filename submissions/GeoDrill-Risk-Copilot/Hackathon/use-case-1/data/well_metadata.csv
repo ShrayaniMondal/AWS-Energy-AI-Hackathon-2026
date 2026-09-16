@@ -1,0 +1,6 @@
+well_id,well_name,api_number,operator,field,county,state,spud_date,rig_release_date,total_depth_ft,tvd_ft,lateral_length_ft,completion_type,target_formation,afe_usd
+W-001,Midland State A 1H,42-329-40001-0000,Permian Basin Resources,Midland Basin,Midland,TX,2024-01-15,2024-03-22,18450,9800,8650,Plug-and-Perf,Wolfcamp A,7200000
+W-002,Midland State B 2H,42-329-40002-0000,Permian Basin Resources,Midland Basin,Midland,TX,2024-04-10,2024-06-18,17900,9650,8250,Plug-and-Perf,Spraberry,6900000
+W-003,Reagan County C 3H,42-383-30003-0000,West Texas Drilling Co,Midland Basin,Reagan,TX,2024-07-05,2024-09-14,19100,10100,9000,Plug-and-Perf,Wolfcamp A,7600000
+W-004,Upton County D 4H,42-461-40004-0000,West Texas Drilling Co,Midland Basin,Upton,TX,2024-09-20,2024-11-28,18200,9750,8450,Plug-and-Perf,Bone Spring,7100000
+W-005,Midland State E 5H,42-329-40005-0000,Permian Basin Resources,Midland Basin,Midland,TX,2024-11-01,2025-01-10,18700,9900,8800,Plug-and-Perf,Wolfcamp A,7400000

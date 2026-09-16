@@ -1,0 +1,7 @@
+recipient_id,name,role,email,report_templates,wells_of_interest,delivery_preference,active
+RCP-001,Sarah Chen,Drilling Engineer,schen@workshop-energy.example.com,TPL-ENG|TPL-OFFSET,PERM-2847|PERM-3201,email_immediate,true
+RCP-002,Mike Rodriguez,Drilling Superintendent,mrodriguez@workshop-energy.example.com,TPL-SUPT|TPL-MORN,PERM-2847|PERM-3201|EF-1105|BAK-0892,email_0600,true
+RCP-003,Jennifer Walsh,VP Drilling Operations,jwalsh@workshop-energy.example.com,TPL-VP,ALL,dashboard_0700,true
+RCP-004,Tom Baker,Senior Drilling Engineer,tbaker@workshop-energy.example.com,TPL-ENG|TPL-WEEK,EF-1105|BAK-0892,email_immediate,true
+RCP-005,Lisa Park,Drilling Manager,lpark@workshop-energy.example.com,TPL-MORN|TPL-WEEK,ALL,email_0600,true
+RCP-006,David Kim,Wellsite Geologist,dkim@workshop-energy.example.com,TPL-ENG,PERM-2847|PERM-3201,email_immediate,true
