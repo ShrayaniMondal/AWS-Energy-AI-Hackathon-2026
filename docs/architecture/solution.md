@@ -10,6 +10,15 @@ and receive cited recommendations.
   catalog metadata and dense seismic data.
 - `src/aws_ai_energy/subsurface/` turns catalog points into interpreted faults,
   fractures, reservoir targets, well screens, exports, and plots.
+- `src/aws_ai_energy/subsurface/scoring.py` produces risk-ranked prospect lists.
+  Each sample receives a `hazard_score`, `target_score`, and `confidence_score`
+  (all bounded 0–1) computed from five named factors: reservoir probability,
+  fault likelihood, fracture intensity, well distance, and evidence strength.
+  Scores are deterministic screening ranks with fixed weights, not calibrated
+  predictions.
+- `src/aws_ai_energy/subsurface/export.py` writes ranked targets and hotspots as
+  both CSV and JSON using the same `score_row` schema, preserving catalog IDs
+  and source row provenance for dashboard consumption.
 - Dashboard and chat features consume exported JSON/CSV bundles and preserve the
   catalog keys described in `docs/hpc-catalog-feature-contract.md`.
 - AgentCore runtime hosts the same deterministic tools used locally. Model
@@ -21,7 +30,9 @@ and receive cited recommendations.
 catalog generator
   -> metadata/catalog.json and run tables
   -> subsurface analyzer
-  -> fault/fracture/target/well exports
+  -> fault/fracture detection
+  -> risk-ranked prospect scoring (5 factors + confidence)
+  -> target/hotspot/well exports (CSV + JSON, same schema)
   -> CLI chat, Streamlit dashboard, AgentCore runtime
   -> cited JSON/CSV evidence bundle
 ```

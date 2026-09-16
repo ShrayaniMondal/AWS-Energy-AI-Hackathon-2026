@@ -89,6 +89,29 @@ Every new software feature must answer these questions before handoff:
 5. How will Streamlit, CLI chat, AgentCore, or a dashboard consume the result
    without recomputing private in-memory state?
 
+## Risk-Ranked Prospect List (scoring.py / export.py)
+
+Answers to the feature-requirement questions above:
+
+1. **Consumed**: `SurveyAnalysis` (catalog points, faults, fractures, wells).
+2. **Produced**: `reservoir_targets.csv`, `reservoir_targets.json`,
+   `fault_fracture_hotspots.csv`, `fault_fracture_hotspots.json` — all using the
+   same `score_row` schema.
+3. **Joinable identifiers**: `row` (1-based source row), `datasetid`,
+   `dimensionid`, `fileid`, `sampleid`.
+4. **Provenance**: every row traces to a catalog point via `row`/`fileid`/
+   `sampleid`; every score exposes its five component factors and weights.
+5. **Dashboard consumption**: JSON exports are byte-valid arrays of objects with
+   the same keys as the CSV headers; Streamlit and AgentCore consume them
+   without recomputation.
+
+Scoring limitations:
+- `confidence_score` is a deterministic evidence-strength index, not a
+  statistical confidence interval.
+- `hazard_score` and `target_score` use fixed weights defined in
+  `ScoringConfig`; they are screening ranks, not calibrated predictions.
+- Tie-breaking uses ascending `row` number for reproducibility.
+
 ## Definition of Done Addendum
 
 A catalog-compatible feature is done only when:
