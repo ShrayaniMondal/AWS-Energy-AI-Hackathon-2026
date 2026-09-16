@@ -23,3 +23,21 @@ Inventory of Python scripts and their functionality.
 ### vector_index.py
 - `build_index(use_bedrock=True)` — Builds FAISS index; returns index + parallel chunk array
 - `search(query, index_data, top_k=5)` — Semantic search returning ranked results with scores and source citations
+
+## Dashboard & Heatmap (Chat Feature)
+
+| Script | Purpose |
+|--------|---------|
+| `src/aws_ai_energy/dashboard.py` | Chat-driven heatmap builder. Parses natural-language feature requests into validated feature lists, builds deterministic JSON payloads with per-point provenance (catalog IDs), and locates analysis bundles. |
+| `streamlit_app_sm_test.py` | Streamlit dashboard with chat interface and heatmap visualization. Chat converts user requests into heatmaps; supports scatter plots, data tables, and JSON export with download. |
+
+### dashboard.py
+- `parse_feature_request(prompt)` — Validates prompt against supported features (wells, faults, horizons, reservoir_probability, physical_data_provenance); raises `DashboardDataError` for unsupported requests
+- `build_heatmap_payload(points_path, prompt, max_points, run_id)` — Deterministic: same inputs always produce identical JSON output with per-point provenance and synthetic-data notice
+- `find_latest_analysis(base_dir)` — Finds newest analysis run directory containing a `manifest.json`
+- `heatmap_payload_to_json(payload, path)` — Writes payload to JSON file for download
+
+### streamlit_app_sm_test.py
+- `render_chat()` — Chat interface; validates requests, builds payloads, rejects unsupported features
+- `render_heatmap()` — Scatter plot + data table + JSON export with provenance counts
+- `render_sidebar()` — Feature list, data status, synthetic-data notice
