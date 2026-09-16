@@ -253,12 +253,51 @@ def render_dashboard(data_dir):
 
     st.header("Drilling Operations Dashboard")
 
+    # --- Filters ---
+    with st.expander("🔧 Filters", expanded=True):
+        fc1, fc2, fc3 = st.columns(3)
+        all_wells_a = sorted(df_a["well_name"].unique())
+        all_npt_cats = sorted(npt["npt_category"].unique())
+        with fc1:
+            well_filter = st.multiselect(
+                "Wells (Corpus A)",
+                options=all_wells_a,
+                default=all_wells_a,
+                key="drill_well_filter",
+            )
+        with fc2:
+            npt_cat_filter = st.multiselect(
+                "NPT Category",
+                options=all_npt_cats,
+                default=all_npt_cats,
+                key="drill_npt_filter",
+            )
+        with fc3:
+            min_date = df_a["report_date"].min().date()
+            max_date = df_a["report_date"].max().date()
+            date_range = st.date_input(
+                "Date Range",
+                value=(min_date, max_date),
+                min_value=min_date,
+                max_value=max_date,
+                key="drill_date_filter",
+            )
+
+    # Apply filters
+    df_a_f = df_a[df_a["well_name"].isin(well_filter)]
+    if isinstance(date_range, tuple) and len(date_range) == 2:
+        df_a_f = df_a_f[(df_a_f["report_date"].dt.date >= date_range[0]) & (df_a_f["report_date"].dt.date <= date_range[1])]
+    npt_f = npt[npt["npt_category"].isin(npt_cat_filter)]
+    if well_filter != all_wells_a:
+        npt_f = npt_f[npt_f["well_name"].isin(well_filter)]
+
+    # --- Metrics (filtered) ---
     k1, k2, k3, k4, k5 = st.columns(5)
-    total_npt_hrs = npt["hours_lost"].sum()
-    total_npt_cost = npt["cost_usd"].sum()
-    avg_rop = df_a["rop_fthr"].mean()
+    total_npt_hrs = npt_f["hours_lost"].sum()
+    total_npt_cost = npt_f["cost_usd"].sum()
+    avg_rop = df_a_f["rop_fthr"].mean() if not df_a_f.empty else 0
     k1.metric("Total Wells", f"{len(wells_a) + len(wells_b)}")
-    k2.metric("DDR Reports", f"{len(df_a) + len(df_b)}")
+    k2.metric("DDR Reports", f"{len(df_a_f) + len(df_b)}")
     k3.metric("NPT Hours", f"{total_npt_hrs:.1f}")
     k4.metric("NPT Cost", f"${total_npt_cost:,.0f}")
     k5.metric("Avg ROP (ft/hr)", f"{avg_rop:.1f}")
@@ -269,55 +308,58 @@ def render_dashboard(data_dir):
 
     with left:
         st.subheader("NPT Incidents by Category")
-        npt_cat = npt.groupby("npt_category").agg(
-            count=("incident_id", "count"),
-            hours=("hours_lost", "sum"),
-        ).reset_index()
-        fig = px.bar(
-            npt_cat, x="npt_category", y="hours",
-            color="npt_category",
-            text="count",
-            labels={"hours": "Hours Lost", "npt_category": "Category", "count": "Incidents"},
-            color_discrete_sequence=px.colors.qualitative.Set2,
-        )
-        fig.update_layout(showlegend=False, margin=dict(t=10, b=10), height=350)
-        fig.update_traces(texttemplate="%{text} incidents", textposition="outside")
-        st.plotly_chart(fig, use_container_width=True)
+        if npt_f.empty:
+            st.info("No NPT incidents match the selected filters.")
+        else:
+            npt_cat = npt_f.groupby("npt_category").agg(
+                count=("incident_id", "count"),
+                hours=("hours_lost", "sum"),
+            ).reset_index()
+            fig = px.bar(
+                npt_cat, x="npt_category", y="hours",
+                color="npt_category",
+                text="count",
+                labels={"hours": "Hours Lost", "npt_category": "Category", "count": "Incidents"},
+                color_discrete_sequence=px.colors.qualitative.Set2,
+            )
+            fig.update_layout(showlegend=False, margin=dict(t=10, b=10), height=350)
+            fig.update_traces(texttemplate="%{text} incidents", textposition="outside")
+            st.plotly_chart(fig, use_container_width=True)
 
     with right:
         st.subheader("NPT Cost by Well")
-        npt_well = npt.groupby("well_name").agg(
-            total_cost=("cost_usd", "sum"),
-            total_hours=("hours_lost", "sum"),
-        ).reset_index().sort_values("total_cost", ascending=True)
-        fig = px.bar(
-            npt_well, x="total_cost", y="well_name",
-            color="total_hours",
-            labels={"total_cost": "Cost (USD)", "well_name": "Well", "total_hours": "Hours Lost"},
-            color_continuous_scale="Reds",
-            orientation="h",
-        )
-        fig.update_layout(margin=dict(t=10, b=10), height=350)
-        st.plotly_chart(fig, use_container_width=True)
+        if npt_f.empty:
+            st.info("No NPT incidents match the selected filters.")
+        else:
+            npt_well = npt_f.groupby("well_name").agg(
+                total_cost=("cost_usd", "sum"),
+                total_hours=("hours_lost", "sum"),
+            ).reset_index().sort_values("total_cost", ascending=True)
+            fig = px.bar(
+                npt_well, x="total_cost", y="well_name",
+                color="total_hours",
+                labels={"total_cost": "Cost (USD)", "well_name": "Well", "total_hours": "Hours Lost"},
+                color_continuous_scale="Reds",
+                orientation="h",
+            )
+            fig.update_layout(margin=dict(t=10, b=10), height=350)
+            st.plotly_chart(fig, use_container_width=True)
 
     st.divider()
 
-    st.subheader("Rate of Penetration (ROP) Over Time — Corpus A")
-    well_filter = st.multiselect(
-        "Filter wells",
-        options=sorted(df_a["well_name"].unique()),
-        default=sorted(df_a["well_name"].unique()),
-    )
-    df_filtered = df_a[df_a["well_name"].isin(well_filter)]
-    fig = px.line(
-        df_filtered, x="report_date", y="rop_fthr",
-        color="well_name",
-        markers=True,
-        labels={"rop_fthr": "ROP (ft/hr)", "report_date": "Date", "well_name": "Well"},
-        color_discrete_sequence=px.colors.qualitative.Bold,
-    )
-    fig.update_layout(margin=dict(t=10, b=10), height=400, legend=dict(orientation="h", y=-0.15))
-    st.plotly_chart(fig, use_container_width=True)
+    st.subheader("Rate of Penetration (ROP) Over Time")
+    if df_a_f.empty:
+        st.info("No reports match the selected filters.")
+    else:
+        fig = px.line(
+            df_a_f, x="report_date", y="rop_fthr",
+            color="well_name",
+            markers=True,
+            labels={"rop_fthr": "ROP (ft/hr)", "report_date": "Date", "well_name": "Well"},
+            color_discrete_sequence=px.colors.qualitative.Bold,
+        )
+        fig.update_layout(margin=dict(t=10, b=10), height=400, legend=dict(orientation="h", y=-0.15))
+        st.plotly_chart(fig, use_container_width=True)
 
     st.divider()
 
@@ -325,49 +367,59 @@ def render_dashboard(data_dir):
 
     with left2:
         st.subheader("Depth Progress by Well")
-        depth_data = df_a.groupby("well_name").agg(
-            max_depth=("measured_depth_ft", "max"),
-            total_footage=("footage_drilled_ft", "sum"),
-        ).reset_index().sort_values("max_depth", ascending=True)
-        fig = px.bar(
-            depth_data, x="max_depth", y="well_name",
-            color="total_footage",
-            labels={"max_depth": "Max Depth (ft)", "well_name": "Well", "total_footage": "Total Footage"},
-            color_continuous_scale="Blues",
-            orientation="h",
-        )
-        fig.update_layout(margin=dict(t=10, b=10), height=300)
-        st.plotly_chart(fig, use_container_width=True)
+        if df_a_f.empty:
+            st.info("No data for selected wells.")
+        else:
+            depth_data = df_a_f.groupby("well_name").agg(
+                max_depth=("measured_depth_ft", "max"),
+                total_footage=("footage_drilled_ft", "sum"),
+            ).reset_index().sort_values("max_depth", ascending=True)
+            fig = px.bar(
+                depth_data, x="max_depth", y="well_name",
+                color="total_footage",
+                labels={"max_depth": "Max Depth (ft)", "well_name": "Well", "total_footage": "Total Footage"},
+                color_continuous_scale="Blues",
+                orientation="h",
+            )
+            fig.update_layout(margin=dict(t=10, b=10), height=300)
+            st.plotly_chart(fig, use_container_width=True)
 
     with right2:
         st.subheader("Cumulative Cost by Well")
-        cost_data = df_a.sort_values("report_date").groupby("well_name").last().reset_index()
-        fig = px.bar(
-            cost_data, x="well_name", y="cumulative_cost_usd",
-            color="well_name",
-            labels={"cumulative_cost_usd": "Cumulative Cost (USD)", "well_name": "Well"},
-            color_discrete_sequence=px.colors.qualitative.Pastel,
-        )
-        fig.update_layout(showlegend=False, margin=dict(t=10, b=10), height=300)
-        st.plotly_chart(fig, use_container_width=True)
+        if df_a_f.empty:
+            st.info("No data for selected wells.")
+        else:
+            cost_data = df_a_f.sort_values("report_date").groupby("well_name").last().reset_index()
+            fig = px.bar(
+                cost_data, x="well_name", y="cumulative_cost_usd",
+                color="well_name",
+                labels={"cumulative_cost_usd": "Cumulative Cost (USD)", "well_name": "Well"},
+                color_discrete_sequence=px.colors.qualitative.Pastel,
+            )
+            fig.update_layout(showlegend=False, margin=dict(t=10, b=10), height=300)
+            st.plotly_chart(fig, use_container_width=True)
 
     st.divider()
 
     st.subheader("Bit Performance — Avg ROP by Type & Well")
-    fig = px.scatter(
-        bit, x="footage_ft", y="avg_rop_fthr",
-        color="bit_type", size="hours",
-        hover_data=["well_name", "manufacturer", "dull_grade_iadc"],
-        labels={
-            "footage_ft": "Footage Drilled (ft)",
-            "avg_rop_fthr": "Avg ROP (ft/hr)",
-            "bit_type": "Bit Type",
-            "hours": "Hours",
-        },
-        color_discrete_sequence=px.colors.qualitative.Vivid,
-    )
-    fig.update_layout(margin=dict(t=10, b=10), height=400)
-    st.plotly_chart(fig, use_container_width=True)
+    bit_f = bit[bit["well_name"].isin(well_filter)] if well_filter != all_wells_a else bit
+    if bit_f.empty:
+        st.info("No bit records match the selected wells.")
+    else:
+        fig = px.scatter(
+            bit_f, x="footage_ft", y="avg_rop_fthr",
+            color="bit_type", size="hours",
+            hover_data=["well_name", "manufacturer", "dull_grade_iadc"],
+            labels={
+                "footage_ft": "Footage Drilled (ft)",
+                "avg_rop_fthr": "Avg ROP (ft/hr)",
+                "bit_type": "Bit Type",
+                "hours": "Hours",
+            },
+            color_discrete_sequence=px.colors.qualitative.Vivid,
+        )
+        fig.update_layout(margin=dict(t=10, b=10), height=400)
+        st.plotly_chart(fig, use_container_width=True)
 
     st.divider()
 
