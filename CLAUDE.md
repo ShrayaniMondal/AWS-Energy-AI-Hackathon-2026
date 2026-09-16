@@ -5,10 +5,11 @@ Purpose: give Claude a low-noise map for evaluating or deploying this Codex-buil
 ## Start Here
 
 1. Read `README.md` for the runnable journey.
-2. Read `docs/judging/evidence-map.md` for criterion-to-file evidence.
-3. Read `docs/architecture/solution.md` for boundaries and handoffs.
-4. Read `teams.md` for ownership.
-5. For deployment execution, follow `docs/prompts/claude-full-deployment.md` exactly.
+2. Read `docs/hpc-catalog-feature-contract.md` for the metadata and export contract.
+3. Read `docs/judging/evidence-map.md` for criterion-to-file evidence.
+4. Read `docs/architecture/solution.md` for boundaries and handoffs.
+5. Read `teams.md` for ownership.
+6. For deployment execution, follow `docs/prompts/claude-full-deployment.md` exactly.
 
 ## Truthful Evaluation Contract
 
@@ -27,6 +28,11 @@ Evaluate these five dimensions independently:
 4. AgentCore/AWS deployment;
 5. dataset grounding and provenance.
 
+Flag any feature as incomplete if it shows an insight, chart, chat response, or cloud result without
+catalog-compatible join keys, source citations, and JSON/CSV exports. Required metadata includes
+`run_id`, project/site/dataset/dimension/segment/file identifiers, source rows, and artifact paths
+when those values exist.
+
 The fastest verification sequence is:
 
 ```bash
@@ -41,6 +47,8 @@ The deterministic demo writes a self-contained hazard atlas, ranked targets, ris
 
 - Domain pipeline: `src/aws_ai_energy/subsurface/`
 - Catalog generator: `src/aws_ai_energy/generate/seismic_catalog.py`
+- HPC catalog contract: `docs/hpc-catalog-feature-contract.md`
+- Judging evidence map: `docs/judging/evidence-map.md`
 - Chat/heatmap contract: `src/aws_ai_energy/dashboard.py`
 - Streamlit journey: `streamlit_app.py`
 - AgentCore runtime: `agentcore_app/main.py`

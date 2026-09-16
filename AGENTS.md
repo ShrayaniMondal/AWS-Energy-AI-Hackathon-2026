@@ -14,13 +14,16 @@ Build one demonstrable path: seeded seismic catalog -> interpreted subsurface ev
 
 1. `README.md`
 2. `teams.md`
-3. `docs/architecture/solution.md`
-4. `docs/judging/evidence-map.md`
-5. The nearest tests for the component you will change
+3. `docs/hpc-catalog-feature-contract.md`
+4. `docs/architecture/solution.md`
+5. `docs/judging/evidence-map.md`
+6. The nearest tests for the component you will change
 
 ## Non-negotiable Contracts
 
 - Preserve row-level provenance. Every derived recommendation must retain catalog row/file identifiers and drilling evidence locators.
+- Follow `docs/hpc-catalog-feature-contract.md` for any generated, analyzed, visualized, or agent-returned data. Keep `run_id`, `projectid`, `siteid`, `datasetid`, `dimensionid`, `segmentid`, `fileid`, source rows, and artifact paths when available.
+- Every software feature must feed the catalog/dashboard path through stable JSON or CSV. Do not create visualization-only or chat-only state that cannot be joined back to catalog metadata.
 - Label generated seismic data as synthetic and scores as screening ranks, not calibrated predictions.
 - Do not join the narrative and tabular DDR corpora by well identifier; their identifier spaces differ.
 - Keep feature ownership boundaries in `teams.md`; coordinate interface changes before crossing them.

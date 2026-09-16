@@ -2,6 +2,17 @@
 
 All contributors work against the interfaces below. Codex is the only implementation assistant. Each owner must preserve provenance, add focused tests, update the evidence map, and pass `make validate` before handoff.
 
+## Shared HPC Catalog Compatibility Contract
+
+All deliverables must follow `docs/hpc-catalog-feature-contract.md`. A feature is not handoff-ready
+until its output can join back to the catalog through `run_id`, `projectid`, `siteid`, `datasetid`,
+`dimensionid`, `segmentid`, `fileid`, source row/sample identifiers, and artifact paths when those
+values are available.
+
+Dashboard, CLI, and AgentCore features must consume and emit stable JSON/CSV payloads rather than
+private in-memory shapes. Any visible map, plot, ranked answer, or chat response should be reusable
+by advanced dashboards and visualizations without losing catalog provenance.
+
 ## Aditya — Subsurface Digital Twin Seed
 
 Present the generated seismic catalog as the seed of a digital twin: wells, faults, horizons, reservoir probability, and physical data provenance. Strong architecture story, slightly bigger scope.
@@ -18,6 +29,8 @@ Interface contract:
 - retain the physical artifact path and source row for every interpreted point;
 - label synthetic data explicitly;
 - provide JSON/CSV structures consumable by the risk and dashboard layers.
+- publish metadata under the catalog `metadata/` or analyzer `analysis/<run_id>/` structure so runs
+  can be restarted and audited.
 
 Acceptance: a seeded catalog can be generated twice without overwriting prior run evidence, loaded by the analyzer, and traced from a displayed point back to its catalog file and row.
 
@@ -37,6 +50,8 @@ Interface contract:
 - reject unsupported features rather than hallucinating them;
 - produce display-ready points and a downloadable JSON payload;
 - include source file/row provenance and the synthetic-data notice.
+- keep every visualized feature keyed to catalog IDs so heatmaps can be filtered by project, site,
+  dataset, segment, file, and physical artifact path.
 
 Acceptance: the same prompt and analysis bundle produce deterministic heatmap JSON for wells, faults, horizons, reservoir probability, and provenance.
 
@@ -56,6 +71,8 @@ Interface contract:
 - produce deterministic ordering and a bounded confidence value;
 - preserve source point and file identifiers;
 - export both CSV and JSON using the same row schema.
+- keep ranked outputs joinable to source catalog points and reusable by the dashboard without
+  recomputing the scoring internals.
 
 Acceptance: ranked results include all five named factors, deterministic tie handling, provenance, and byte-valid JSON consumed directly by the dashboard.
 
@@ -79,12 +96,14 @@ Interface contract:
 - expose JSON downloads and source citations;
 - deploy the agent backend through Amazon Bedrock AgentCore and the dashboard through AWS infrastructure;
 - record actual endpoint/stack outputs and a smoke invocation without committing credentials.
+- verify cloud and dashboard responses include catalog join keys and export links for advanced
+  visualization.
 
 Acceptance: `make dashboard` serves a usable local journey; AgentCore config validates; deployment documentation includes dry-run, deploy, smoke, logs, rollback, and offline fallback. Cloud readiness is not claimed until real AWS evidence is captured.
 
 ## Shared Integration Order
 
-1. Aditya publishes the catalog and provenance contract.
+1. Aditya publishes the catalog and provenance contract in `docs/hpc-catalog-feature-contract.md`.
 2. Rongrong publishes ranked CSV/JSON contracts.
 3. Shrayani consumes those contracts for chat-driven heatmaps.
 4. Yuxin integrates the accepted contracts into Streamlit and AgentCore/AWS delivery.
