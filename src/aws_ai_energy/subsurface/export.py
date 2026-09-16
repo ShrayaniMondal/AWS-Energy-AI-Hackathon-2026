@@ -67,11 +67,19 @@ def export_bundle(
     )
     hotspots = top_scores(scores, "hazard_score", top_n)
     targets = top_scores(scores, "target_score", top_n)
+    hotspot_rows = [score_row(score) for score in hotspots]
+    target_rows = [score_row(score) for score in targets]
     files["fault_fracture_hotspots"] = _write_csv(
-        run_dir / "fault_fracture_hotspots.csv", [score_row(score) for score in hotspots]
+        run_dir / "fault_fracture_hotspots.csv", hotspot_rows
+    )
+    files["fault_fracture_hotspots_json"] = _write_json(
+        run_dir / "fault_fracture_hotspots.json", hotspot_rows
     )
     files["reservoir_targets"] = _write_csv(
-        run_dir / "reservoir_targets.csv", [score_row(score) for score in targets]
+        run_dir / "reservoir_targets.csv", target_rows
+    )
+    files["reservoir_targets_json"] = _write_json(
+        run_dir / "reservoir_targets.json", target_rows
     )
     files["faults_csv"] = _write_csv(
         run_dir / "faults.csv",
@@ -102,7 +110,9 @@ def export_bundle(
     files["well_briefs_json"] = _write_json(
         run_dir / "well_briefs.json", to_jsonable(analysis.ranked_briefs())
     )
-    files["hazard_intervals"] = _write_csv(run_dir / "hazard_intervals.csv", _interval_rows(analysis))
+    files["hazard_intervals"] = _write_csv(
+        run_dir / "hazard_intervals.csv", _interval_rows(analysis)
+    )
     files["precedents"] = _write_csv(run_dir / "precedents.csv", _precedent_rows(analysis))
     files["hazard_rules"] = _write_json(run_dir / "hazard_rules.json", to_jsonable(HAZARD_RULES))
     if analysis.scorecard is not None:
@@ -161,7 +171,9 @@ def export_bundle(
         files["hazard_atlas"] = atlas_path
 
     summary_path = run_dir / "summary.json"
-    summary["outputs"] = {name: path.relative_to(run_dir).as_posix() for name, path in files.items()}
+    summary["outputs"] = {
+        name: path.relative_to(run_dir).as_posix() for name, path in files.items()
+    }
     _write_json(summary_path, summary)
     files["summary"] = summary_path
 
@@ -197,10 +209,16 @@ def _manifest(
     top_n: int,
 ) -> dict[str, Any]:
     inputs: list[dict[str, Any]] = [
-        _input_record(analysis.survey.points_path, "generated_seismic_catalog", len(analysis.survey.points))
+        _input_record(
+            analysis.survey.points_path,
+            "generated_seismic_catalog",
+            len(analysis.survey.points),
+        )
     ]
     if analysis.survey.catalog_path is not None:
-        inputs.append(_input_record(analysis.survey.catalog_path, "generated_seismic_catalog", None))
+        inputs.append(
+            _input_record(analysis.survey.catalog_path, "generated_seismic_catalog", None)
+        )
     if analysis.drilling is not None:
         for path in analysis.drilling.source_paths():
             inputs.append(_input_record(path, "hackathon_use_case_1", None))
@@ -242,8 +260,12 @@ def _manifest(
             "settings": to_jsonable(analysis.settings),
         },
         "evidence_classes": {
-            "generated_seismic_catalog": "Synthetic seismic catalog produced by generate.seismic_catalog.",
-            "hackathon_use_case_1": "Drilling data and reference documents supplied for use case 1.",
+            "generated_seismic_catalog": (
+                "Synthetic seismic catalog produced by generate.seismic_catalog."
+            ),
+            "hackathon_use_case_1": (
+                "Drilling data and reference documents supplied for use case 1."
+            ),
             "derived_screening_output": "Computed by this tool; cite its inputs, not the output.",
         },
         "inputs": inputs,

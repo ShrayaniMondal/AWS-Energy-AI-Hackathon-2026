@@ -49,6 +49,9 @@ The catalog records logical file sizes under 1 GiB, while the generated physical
 - `metadata/runs/<run_id>/catalog.json`: immutable run-level catalog.
 - `metadata/runs/<run_id>/tables/`: per-table JSON and CSV exports for projects, sites, machines,
   filesystems, wells, faults, horizons, datasets, dimensions, segments, and files.
+- `metadata/runs/<run_id>/digital_twin/`: restartable digital-twin seed endpoints:
+  `digital_twin_seed.json`, `digital_twin_points.csv`, `digital_twin_metrics.json`,
+  `digital_twin_layers.geojson`, and `digital_twin_manifest.json`.
 - `visualization_points.csv`: plot-ready rows with inline, crossline, depth, amplitude, velocity,
   impedance, fault likelihood, fracture intensity, reservoir probability, well distance, and lithology.
 - `files/`: lightweight physical CSV files matching records in the `files` catalog table.
@@ -71,6 +74,14 @@ Print the latest run-level catalog path:
 .venv/bin/python -m generate.seismic_catalog --output-dir outputs/seismic_catalog_5 --latest-metadata
 ```
 
+Print the latest digital-twin endpoints:
+
+```bash
+.venv/bin/python -m generate.seismic_catalog \
+  --output-dir outputs/seismic_catalog_5 \
+  --digital-twin-endpoints
+```
+
 Python callers can load the latest catalog directly:
 
 ```python
@@ -78,7 +89,11 @@ from aws_ai_energy.generate.seismic_catalog import load_latest_catalog
 
 catalog = load_latest_catalog("outputs/seismic_catalog_5")
 files = catalog["tables"]["files"]
+digital_twin = catalog["artifacts"]["digital_twin"]
 ```
+
+See `docs/subsurface-digital-twin-seed.md` for the digital-twin seed contract,
+stable IDs, metrics endpoint, GeoJSON layers, and provenance fields.
 
 ## Plot With Matplotlib
 

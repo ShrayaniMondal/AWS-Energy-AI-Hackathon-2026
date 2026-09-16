@@ -54,7 +54,9 @@ def build_parser() -> argparse.ArgumentParser:
     _survey_options(export)
     _evidence_options(export)
     _tuning_options(export)
-    export.add_argument("--analysis-dir", type=Path, help="Export parent. Defaults to OUTPUT_DIR/analysis.")
+    export.add_argument(
+        "--analysis-dir", type=Path, help="Export parent. Defaults to OUTPUT_DIR/analysis."
+    )
     export.add_argument("--top-n", type=int, default=DEFAULT_TOP_N, help="Hotspot and target rows.")
     export.add_argument("--no-plots", action="store_true", help="Skip matplotlib PNG plots.")
     export.add_argument("--no-html", action="store_true", help="Skip the HTML hazard atlas.")
@@ -77,7 +79,9 @@ def build_parser() -> argparse.ArgumentParser:
     _tuning_options(wells)
     location = wells.add_mutually_exclusive_group()
     location.add_argument("--well", help="Catalog well id, for example well_05.")
-    location.add_argument("--at", help="Screen a planned location given as INLINE,CROSSLINE metres.")
+    location.add_argument(
+        "--at", help="Screen a planned location given as INLINE,CROSSLINE metres."
+    )
     wells.add_argument("--json", action="store_true", help="Print JSON.")
 
     demo = commands.add_parser("demo", help="Generate a seeded catalog, analyze it, and export.")
@@ -213,7 +217,9 @@ def _drilling(args: argparse.Namespace) -> DrillingEvidence | None:
 def _selected_wells(args: argparse.Namespace, wells: list[WellLocation]) -> list[WellLocation]:
     if args.at:
         inline, crossline = parse_location(args.at)
-        return [WellLocation(f"site_{inline:.0f}_{crossline:.0f}", "planned site", inline, crossline)]
+        return [
+            WellLocation(f"site_{inline:.0f}_{crossline:.0f}", "planned site", inline, crossline)
+        ]
     if args.well:
         selected = [well for well in wells if well.id == args.well]
         if not selected:

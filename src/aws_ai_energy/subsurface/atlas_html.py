@@ -169,7 +169,8 @@ def _map_legend() -> str:
     )
     return (
         "<div class='legend'>"
-        "<span class='legend-title'>P90 fracture intensity</span>" + "".join(swatches)
+        "<span class='legend-title'>P90 fracture intensity</span>"
+        + "".join(swatches)
         + "<span class='key muted-note'>blank = no samples</span></div>"
         "<div class='legend'>"
         "<span class='key'><svg width='22' height='14' aria-hidden='true'>"
@@ -198,8 +199,23 @@ def _map_svg(analysis: SurveyAnalysis) -> str:
         return top + (cross_hi - crossline) * scale
 
     parts = [_svg_open("map-svg", width, height, "Map view of fracture intensity and faults")]
-    parts.append(_grid_and_axes(left, top, plot_width, plot_height, inline_lo, inline_hi, cross_lo,
-                                cross_hi, sx, sy, "Inline (m)", "Crossline (m)", invert_y=False))
+    parts.append(
+        _grid_and_axes(
+            left,
+            top,
+            plot_width,
+            plot_height,
+            inline_lo,
+            inline_hi,
+            cross_lo,
+            cross_hi,
+            sx,
+            sy,
+            "Inline (m)",
+            "Crossline (m)",
+            invert_y=False,
+        )
+    )
 
     corridor_by_cell = {
         cell_id: corridor.id for corridor in analysis.corridors for cell_id in corridor.cell_ids
@@ -247,8 +263,10 @@ def _map_svg(analysis: SurveyAnalysis) -> str:
             f"class='hit-line' tabindex='0' data-tip='{_e(tip)}'/>"
         )
         label_x, label_y = sx(x1), sy(y1) - 6
-        parts.append(f"<text x='{label_x:.1f}' y='{label_y:.1f}' class='label halo' "
-                     f"text-anchor='middle'>{_e(fault.id)}</text>")
+        parts.append(
+            f"<text x='{label_x:.1f}' y='{label_y:.1f}' class='label halo' "
+            f"text-anchor='middle'>{_e(fault.id)}</text>"
+        )
 
     for corridor in analysis.corridors:
         parts.append(
@@ -268,14 +286,16 @@ def _map_svg(analysis: SurveyAnalysis) -> str:
             else f"{screen.nearest_fault_distance_m:.0f} m to {screen.nearest_fault_id}"
         )
         tip = (
-            f"{screen.well.id} · index {screen.risk_index:.0f} ({screen.risk_class})\n{fault_text}\n"
+            f"{screen.well.id} · index {screen.risk_index:.0f} "
+            f"({screen.risk_class})\n{fault_text}\n"
             + ("; ".join(hazard.hazard for hazard in screen.hazards) or "no hazards triggered")
         )
         parts.append(
             f"<g class='well' tabindex='0' data-tip='{_e(tip)}'>"
             f"<circle cx='{x:.1f}' cy='{y:.1f}' r='14' class='hit'/>"
             f"<circle cx='{x:.1f}' cy='{y:.1f}' r='6' class='risk-{screen.risk_class} ring'/>"
-            f"<text x='{x + 10:.1f}' y='{y + label_dy:.1f}' class='label halo'>{_e(screen.well.id)} "
+            f"<text x='{x + 10:.1f}' y='{y + label_dy:.1f}' "
+            f"class='label halo'>{_e(screen.well.id)} "
             f"{RISK_GLYPHS[screen.risk_class]}</text></g>"
         )
     parts.append("</svg>")
@@ -313,7 +333,8 @@ def _risk_bars_svg(analysis: SurveyAnalysis) -> str:
         end = sx(screen.risk_index)
         radius = min(4.0, max(0.0, end - left))
         path = (
-            f"M{left:.1f},{y:.1f} H{end - radius:.1f} Q{end:.1f},{y:.1f} {end:.1f},{y + radius:.1f} "
+            f"M{left:.1f},{y:.1f} H{end - radius:.1f} "
+            f"Q{end:.1f},{y:.1f} {end:.1f},{y + radius:.1f} "
             f"V{y + thickness - radius:.1f} Q{end:.1f},{y + thickness:.1f} "
             f"{end - radius:.1f},{y + thickness:.1f} H{left:.1f} Z"
         )
@@ -346,8 +367,9 @@ def _section_legend() -> str:
         for css, label in keys
     )
     return (
-        "<div class='legend'><span class='legend-title'>Lithology</span>" + items +
-        "<span class='key'><svg width='22' height='14' aria-hidden='true'>"
+        "<div class='legend'><span class='legend-title'>Lithology</span>"
+        + items
+        + "<span class='key'><svg width='22' height='14' aria-hidden='true'>"
         "<line x1='1' y1='7' x2='21' y2='7' class='horizon-line'/></svg>reservoir top / base</span>"
         "</div>"
     )
@@ -385,9 +407,24 @@ def _section_svg(analysis: SurveyAnalysis, brief: WellBrief) -> tuple[str, str]:
         return top + (depth - depth_lo) / (depth_hi - depth_lo) * plot_height
 
     parts = [_svg_open("section-svg", width, height, f"Depth section through {well.id}")]
-    parts.append(_grid_and_axes(left, top, plot_width, plot_height, inline_lo, inline_hi, depth_lo,
-                                depth_hi, sx, sy, "Inline (m)", "Depth (m)", invert_y=True,
-                                y_step=100.0))
+    parts.append(
+        _grid_and_axes(
+            left,
+            top,
+            plot_width,
+            plot_height,
+            inline_lo,
+            inline_hi,
+            depth_lo,
+            depth_hi,
+            sx,
+            sy,
+            "Inline (m)",
+            "Depth (m)",
+            invert_y=True,
+            y_step=100.0,
+        )
+    )
 
     for name, attribute in (("top", "horizon_top_m"), ("base", "horizon_base_m")):
         line = _horizon_polyline(members, attribute)
@@ -395,8 +432,10 @@ def _section_svg(analysis: SurveyAnalysis, brief: WellBrief) -> tuple[str, str]:
             coordinates = " ".join(f"{sx(x):.1f},{sy(y):.1f}" for x, y in line)
             parts.append(f"<polyline points='{coordinates}' class='horizon-line'/>")
             end_x, end_y = line[-1]
-            parts.append(f"<text x='{sx(end_x) + 6:.1f}' y='{sy(end_y) + 4:.1f}' "
-                         f"class='label muted halo'>reservoir {name}</text>")
+            parts.append(
+                f"<text x='{sx(end_x) + 6:.1f}' y='{sy(end_y) + 4:.1f}' "
+                f"class='label muted halo'>reservoir {name}</text>"
+            )
 
     data = []
     for point in shown:
@@ -442,11 +481,14 @@ def _section_svg(analysis: SurveyAnalysis, brief: WellBrief) -> tuple[str, str]:
 
 def _brief_html(analysis: SurveyAnalysis, brief: WellBrief) -> str:
     screen = brief.screen
-    rows = "".join(
-        f"<tr><td>{_e(hazard.title)}</td><td><code>{_e(hazard.hazard)}</code></td>"
-        f"<td>{_e(hazard.measured)}</td></tr>"
-        for hazard in screen.hazards
-    ) or "<tr><td colspan='3'>No hazard rule triggered for this location.</td></tr>"
+    rows = (
+        "".join(
+            f"<tr><td>{_e(hazard.title)}</td><td><code>{_e(hazard.hazard)}</code></td>"
+            f"<td>{_e(hazard.measured)}</td></tr>"
+            for hazard in screen.hazards
+        )
+        or "<tr><td colspan='3'>No hazard rule triggered for this location.</td></tr>"
+    )
     parts = [
         f"<section class='panel'><h2>Drilling brief: {_e(screen.well.id)}</h2>",
         (
@@ -471,7 +513,9 @@ def _brief_html(analysis: SurveyAnalysis, brief: WellBrief) -> str:
         if precedent.incidents:
             parts.append(_incident_table(list(precedent.incidents)))
         for passage in precedent.references:
-            excerpt = "".join(f"<li>{_e(_strip_list_marker(line))}</li>" for line in passage.excerpt)
+            excerpt = "".join(
+                f"<li>{_e(_strip_list_marker(line))}</li>" for line in passage.excerpt
+            )
             parts.append(
                 f"<blockquote><p class='cite'>{_e(passage.citation.text())}</p>"
                 f"<ul>{excerpt}</ul></blockquote>"
@@ -506,27 +550,34 @@ def _tables_html(analysis: SurveyAnalysis) -> str:
             for match in analysis.scorecard.matches
             if match.detected_fault_id
         }
-    fault_rows = "".join(
-        f"<tr><td>{_e(fault.id)}</td><td class='num'>{fault.intercept_inline_m:,.0f}</td>"
-        f"<td class='num'>{fault.strike_azimuth_deg:.1f}°</td>"
-        f"<td class='num'>{fault.length_m:,.0f}</td>"
-        f"<td class='num'>{_num(fault.throw_m, 0)}</td>"
-        f"<td class='num'>{fault.damage_zone_half_width_m:.0f}</td>"
-        f"<td class='num'>{fault.support_points}</td>"
-        f"<td class='num'>{fault.mean_coherence:.2f}</td>"
-        f"<td>{_match_text(matches.get(fault.id))}</td></tr>"
-        for fault in analysis.faults
-    ) or "<tr><td colspan='9'>No faults detected at the configured threshold.</td></tr>"
-    corridor_rows = "".join(
-        f"<tr><td>{_e(corridor.id)}</td><td class='num'>{corridor.cell_count}</td>"
-        f"<td class='num'>{corridor.length_m:,.0f} × {corridor.width_m:,.0f}</td>"
-        f"<td class='num'>{corridor.strike_azimuth_deg:.1f}°</td>"
-        f"<td class='num'>{corridor.mean_p90_intensity:.2f}</td>"
-        f"<td>{_e(corridor.origin.replace('_', ' '))}</td>"
-        f"<td>{_e(corridor.nearest_fault_id or '—')} ({_num(corridor.nearest_fault_distance_m, 0)} m)"
-        "</td></tr>"
-        for corridor in analysis.corridors
-    ) or "<tr><td colspan='7'>No corridor reached the minimum size.</td></tr>"
+    fault_rows = (
+        "".join(
+            f"<tr><td>{_e(fault.id)}</td><td class='num'>{fault.intercept_inline_m:,.0f}</td>"
+            f"<td class='num'>{fault.strike_azimuth_deg:.1f}°</td>"
+            f"<td class='num'>{fault.length_m:,.0f}</td>"
+            f"<td class='num'>{_num(fault.throw_m, 0)}</td>"
+            f"<td class='num'>{fault.damage_zone_half_width_m:.0f}</td>"
+            f"<td class='num'>{fault.support_points}</td>"
+            f"<td class='num'>{fault.mean_coherence:.2f}</td>"
+            f"<td>{_match_text(matches.get(fault.id))}</td></tr>"
+            for fault in analysis.faults
+        )
+        or "<tr><td colspan='9'>No faults detected at the configured threshold.</td></tr>"
+    )
+    corridor_rows = (
+        "".join(
+            f"<tr><td>{_e(corridor.id)}</td><td class='num'>{corridor.cell_count}</td>"
+            f"<td class='num'>{corridor.length_m:,.0f} × {corridor.width_m:,.0f}</td>"
+            f"<td class='num'>{corridor.strike_azimuth_deg:.1f}°</td>"
+            f"<td class='num'>{corridor.mean_p90_intensity:.2f}</td>"
+            f"<td>{_e(corridor.origin.replace('_', ' '))}</td>"
+            f"<td>{_e(corridor.nearest_fault_id or '—')} "
+            f"({_num(corridor.nearest_fault_distance_m, 0)} m)"
+            "</td></tr>"
+            for corridor in analysis.corridors
+        )
+        or "<tr><td colspan='7'>No corridor reached the minimum size.</td></tr>"
+    )
     well_rows = "".join(
         f"<tr><td>{_e(b.screen.well.id)}</td><td class='num'>{b.screen.risk_index:.1f}</td>"
         f"<td>{RISK_GLYPHS[b.screen.risk_class]} {_e(b.screen.risk_class)}</td>"
@@ -608,8 +659,7 @@ def _horizon_polyline(members: list[SeismicPoint], attribute: str) -> list[tuple
     for point in members:
         bins[math.floor(point.inline_m / 100.0)].append(float(getattr(point, attribute)))
     return [
-        ((index + 0.5) * 100.0, percentile(values, 0.5))
-        for index, values in sorted(bins.items())
+        ((index + 0.5) * 100.0, percentile(values, 0.5)) for index, values in sorted(bins.items())
     ]
 
 
@@ -717,7 +767,9 @@ CSS = """
 body{margin:0;background:var(--page);color:var(--ink);
 font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
 .viz-root{max-width:1120px;margin:0 auto;padding:24px 16px 64px}
-h1{font-size:28px;margin:4px 0 8px}h2{font-size:17px;margin:0 0 4px}h3{font-size:14px;margin:18px 0 4px}
+h1{font-size:28px;margin:4px 0 8px}
+h2{font-size:17px;margin:0 0 4px}
+h3{font-size:14px;margin:18px 0 4px}
 .eyebrow{margin:0;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
 .lede{margin:0 0 12px;color:var(--ink-2);max-width:760px}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin:0}

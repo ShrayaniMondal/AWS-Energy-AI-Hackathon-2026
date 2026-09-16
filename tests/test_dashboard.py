@@ -13,7 +13,6 @@ from aws_ai_energy.dashboard import (
     parse_feature_request,
 )
 
-
 FIELDNAMES = [
     "row",
     "datasetid",

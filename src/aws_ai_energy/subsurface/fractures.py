@@ -151,13 +151,16 @@ def _describe_corridor(
 ) -> FractureCorridor:
     weights = [cell.p90_intensity for cell in component]
     total = sum(weights)
-    centroid_inline = sum(w * c.inline_center_m for w, c in zip(weights, component, strict=True)) / total
+    centroid_inline = (
+        sum(w * c.inline_center_m for w, c in zip(weights, component, strict=True)) / total
+    )
     centroid_crossline = (
         sum(w * c.crossline_center_m for w, c in zip(weights, component, strict=True)) / total
     )
 
     var_inline = sum(
-        w * (c.inline_center_m - centroid_inline) ** 2 for w, c in zip(weights, component, strict=True)
+        w * (c.inline_center_m - centroid_inline) ** 2
+        for w, c in zip(weights, component, strict=True)
     )
     var_crossline = sum(
         w * (c.crossline_center_m - centroid_crossline) ** 2

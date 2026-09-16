@@ -8,7 +8,13 @@ Inventory of Python scripts and their functionality.
 |--------|---------|
 | `config.py` | Central configuration — all data paths, constants, and field names. Single source of truth for file locations. |
 | `data_loader.py` | Loads all data into memory: Corpus A (75 JSON DDRs), Corpus B (192-row CSV DDR), 13 supporting CSVs, narrative text chunks, and reference doc sections. Exposes `load_all()` for Streamlit caching. |
-| `vector_index.py` | Builds a FAISS semantic search index over 301 text chunks (DDR narratives + reference docs). Uses Bedrock Titan embeddings with TF-IDF fallback. Exposes `build_index()` and `search()`. |
+| `vector_index.py` | Builds a FAISS semantic search index over DDR narratives and reference docs. Uses Bedrock Titan embeddings with TF-IDF fallback. Exposes `build_index()` and `search()`. |
+
+The loader defaults to `Hackathon/use-case-1/data` and accepts the `DRILLING_DATA_DIR` environment variable. Corpus A and Corpus B remain separate identifier spaces.
+
+## Repository Documentation Toolbox
+
+`src/aws_ai_energy/toolbox_docs.py` indexes repository Markdown plus public Python module/API docstrings into deterministic JSON. It preserves repository-relative citations and line ranges, excludes generated/staged dependencies, and validates `.codex/skills` before delivery. See `docs/toolbox-helper.md`.
 
 ## Key Functions
 

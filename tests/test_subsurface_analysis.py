@@ -16,6 +16,7 @@ from aws_ai_energy.subsurface.cli import main
 from aws_ai_energy.subsurface.drilling import load_drilling_evidence, thresholds_for
 from aws_ai_energy.subsurface.export import export_bundle, sha256_file
 from aws_ai_energy.subsurface.points import SurveyInputs, WellLocation, load_survey
+from aws_ai_energy.subsurface.scoring import score_points, score_row
 
 CREATED_AT = datetime(2026, 1, 1, tzinfo=UTC)
 
@@ -103,6 +104,35 @@ class SubsurfaceAnalysisTests(unittest.TestCase):
             self.assertLessEqual(match.mean_trace_offset_m, 25.0)
             self.assertLessEqual(abs(match.slope_error), 0.02)
             self.assertLessEqual(abs(match.throw_error_m), 45.0)
+
+    def test_loaded_points_retain_digital_twin_provenance_for_scored_exports(self) -> None:
+        point = self.survey.points[0]
+        self.assertEqual(point.run_id, self.survey.catalog_run_id)
+        self.assertTrue(point.sample_uid.startswith(f"{self.survey.catalog_run_id}:sample:"))
+        self.assertTrue(Path(point.artifact_path).exists())
+        self.assertEqual(point.source_table, "visualization_points")
+        self.assertEqual(point.source_row, point.row)
+        self.assertTrue(point.synthetic_data)
+
+        analysis = analyze_survey(self.survey)
+        row = score_row(score_points(analysis)[0])
+        for column in (
+            "run_id",
+            "projectid",
+            "siteid",
+            "segmentid",
+            "artifact_path",
+            "source_table",
+            "source_file",
+            "source_row",
+            "synthetic_data",
+            "sample_uid",
+            "file_uid",
+            "horizon_top_uid",
+        ):
+            self.assertIn(column, row)
+        self.assertEqual(row["source_row"], point.row)
+        self.assertEqual(row["synthetic_data"], True)
 
     def test_fracture_corridors_follow_detected_faults(self) -> None:
         analysis = analyze_survey(self.survey)
@@ -235,7 +265,10 @@ class SubsurfaceAnalysisTests(unittest.TestCase):
                 ]
             )
         payload = json.loads(stdout.getvalue())
-        self.assertEqual([brief["screen"]["well"]["id"] for brief in payload["briefs"]], ["well_05"])
+        self.assertEqual(
+            [brief["screen"]["well"]["id"] for brief in payload["briefs"]],
+            ["well_05"],
+        )
 
         for arguments, message in (
             (["wells", "--output-dir", str(self.root / "missing")], "no catalog run found"),

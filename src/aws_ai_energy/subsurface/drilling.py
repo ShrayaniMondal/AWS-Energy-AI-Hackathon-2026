@@ -180,7 +180,9 @@ def find_reference_passage(
     for index, line in enumerate(lines):
         if needle not in line.lower():
             continue
-        heading = line.lstrip("#").strip() if line.startswith("#") else _enclosing_heading(lines, index)
+        heading = (
+            line.lstrip("#").strip() if line.startswith("#") else _enclosing_heading(lines, index)
+        )
         start = index + 1 if line.startswith("#") else index
         excerpt: list[str] = []
         for body in lines[start:]:

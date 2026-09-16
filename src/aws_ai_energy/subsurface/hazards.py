@@ -168,7 +168,8 @@ def screen_well(
                 _triggered(
                     "fault_damage_zone",
                     f"{fault_distance:.0f} m from {fault.id} (damage half-width "
-                    f"{fault.damage_zone_half_width_m:.0f} m + {settings.damage_zone_buffer_m:.0f} m)",
+                    f"{fault.damage_zone_half_width_m:.0f} m + "
+                    f"{settings.damage_zone_buffer_m:.0f} m)",
                 )
             )
         if fault.throw_m is not None:

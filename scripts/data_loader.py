@@ -6,10 +6,8 @@ and reference documents into memory. Designed to be cached by Streamlit.
 """
 
 import json
-from pathlib import Path
 
 import pandas as pd
-
 from config import (
     BENCHMARK_PATHS,
     CORPUS_A_DIR,
@@ -72,11 +70,13 @@ def _split_md_sections(text: str, doc_name: str) -> list[dict]:
             if current_lines:
                 body = "\n".join(current_lines).strip()
                 if body:
-                    sections.append({
-                        "source": f"reference_docs/{doc_name}.md",
-                        "heading": current_heading,
-                        "text": body,
-                    })
+                    sections.append(
+                        {
+                            "source": f"reference_docs/{doc_name}.md",
+                            "heading": current_heading,
+                            "text": body,
+                        }
+                    )
             current_heading = line.lstrip("# ").strip()
             current_lines = []
         else:
@@ -85,11 +85,13 @@ def _split_md_sections(text: str, doc_name: str) -> list[dict]:
     if current_lines:
         body = "\n".join(current_lines).strip()
         if body:
-            sections.append({
-                "source": f"reference_docs/{doc_name}.md",
-                "heading": current_heading,
-                "text": body,
-            })
+            sections.append(
+                {
+                    "source": f"reference_docs/{doc_name}.md",
+                    "heading": current_heading,
+                    "text": body,
+                }
+            )
     return sections
 
 
@@ -108,19 +110,21 @@ def load_narrative_chunks() -> list[dict]:
         text = str(row.get(CORPUS_A_TEXT_FIELD, "")).strip()
         if not text:
             continue
-        chunks.append({
-            "text": text,
-            "source": f"corpus_a/{row.get('_source_file', '')}",
-            "well_key": row.get("well_name", ""),
-            "date": str(row.get("report_date", "")),
-            "corpus": "A",
-            "metadata": {
-                "depth_ft": row.get("measured_depth_ft"),
-                "formation": row.get("casing_string", ""),
-                "npt_hrs": row.get("npt_hrs"),
-                "npt_description": row.get("npt_description", ""),
-            },
-        })
+        chunks.append(
+            {
+                "text": text,
+                "source": f"corpus_a/{row.get('_source_file', '')}",
+                "well_key": row.get("well_name", ""),
+                "date": str(row.get("report_date", "")),
+                "corpus": "A",
+                "metadata": {
+                    "depth_ft": row.get("measured_depth_ft"),
+                    "formation": row.get("casing_string", ""),
+                    "npt_hrs": row.get("npt_hrs"),
+                    "npt_description": row.get("npt_description", ""),
+                },
+            }
+        )
 
     # Corpus B narratives
     corpus_b = load_corpus_b()
@@ -128,19 +132,21 @@ def load_narrative_chunks() -> list[dict]:
         text = str(row.get("remarks", "")).strip()
         if not text:
             continue
-        chunks.append({
-            "text": text,
-            "source": f"corpus_b/daily_drilling_reports.csv:row_{row.get('report_id', '')}",
-            "well_key": row.get("well_id", ""),
-            "date": str(row.get("report_date", "")),
-            "corpus": "B",
-            "metadata": {
-                "depth_ft": row.get("measured_depth_ft"),
-                "formation": row.get("formation", ""),
-                "npt_hours": row.get("npt_hours"),
-                "npt_category": row.get("npt_category", ""),
-            },
-        })
+        chunks.append(
+            {
+                "text": text,
+                "source": f"corpus_b/daily_drilling_reports.csv:row_{row.get('report_id', '')}",
+                "well_key": row.get("well_id", ""),
+                "date": str(row.get("report_date", "")),
+                "corpus": "B",
+                "metadata": {
+                    "depth_ft": row.get("measured_depth_ft"),
+                    "formation": row.get("formation", ""),
+                    "npt_hours": row.get("npt_hours"),
+                    "npt_category": row.get("npt_category", ""),
+                },
+            }
+        )
 
     return chunks
 
@@ -169,8 +175,16 @@ def load_all() -> dict:
 
 if __name__ == "__main__":
     data = load_all()
-    print(f"Corpus A: {len(data['corpus_a'])} reports, {data['corpus_a']['well_name'].nunique()} wells")
-    print(f"Corpus B: {len(data['corpus_b'])} reports, {data['corpus_b']['well_id'].nunique()} wells")
+    corpus_a_wells = data["corpus_a"]["well_name"].nunique()
+    corpus_b_wells = data["corpus_b"]["well_id"].nunique()
+    print(
+        f"Corpus A: {len(data['corpus_a'])} reports, "
+        f"{corpus_a_wells} wells"
+    )
+    print(
+        f"Corpus B: {len(data['corpus_b'])} reports, "
+        f"{corpus_b_wells} wells"
+    )
     print(f"Supporting tables: {list(data['tables'].keys())}")
     for name, df in data["tables"].items():
         print(f"  {name}: {len(df)} rows")

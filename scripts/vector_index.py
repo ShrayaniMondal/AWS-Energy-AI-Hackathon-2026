@@ -10,13 +10,14 @@ import pickle
 from pathlib import Path
 
 import numpy as np
-
 from data_loader import load_narrative_chunks, load_reference_docs
 
 INDEX_CACHE_DIR = Path(__file__).resolve().parent.parent / "outputs" / ".cache"
 
 
-def _get_bedrock_embeddings(texts: list[str], model_id: str = "amazon.titan-embed-text-v2:0") -> np.ndarray:
+def _get_bedrock_embeddings(
+    texts: list[str], model_id: str = "amazon.titan-embed-text-v2:0"
+) -> np.ndarray:
     """Generate embeddings using Amazon Bedrock Titan."""
     import boto3
 
@@ -69,14 +70,16 @@ def build_index(use_bedrock: bool = True) -> dict:
         texts.append(chunk["text"])
 
     for doc in ref_docs:
-        all_chunks.append({
-            "text": doc["text"],
-            "source": doc["source"],
-            "well_key": "",
-            "date": "",
-            "corpus": "reference",
-            "metadata": {"heading": doc["heading"]},
-        })
+        all_chunks.append(
+            {
+                "text": doc["text"],
+                "source": doc["source"],
+                "well_key": "",
+                "date": "",
+                "corpus": "reference",
+                "metadata": {"heading": doc["heading"]},
+            }
+        )
         texts.append(doc["text"])
 
     if not texts:
@@ -123,7 +126,7 @@ def search(query: str, index_data: dict, top_k: int = 5) -> list[dict]:
     scores, indices = index_data["index"].search(q_emb, top_k)
 
     results = []
-    for score, idx in zip(scores[0], indices[0]):
+    for score, idx in zip(scores[0], indices[0], strict=True):
         if idx < 0:
             continue
         chunk = index_data["chunks"][idx]

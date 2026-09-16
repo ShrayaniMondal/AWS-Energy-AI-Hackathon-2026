@@ -8,6 +8,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from aws_ai_energy.generate.digital_twin import stable_entity_id, stable_point_id, stable_sample_id
+
 REQUIRED_POINT_COLUMNS = (
     "datasetid",
     "dimensionid",
@@ -43,16 +45,50 @@ class SeismicPoint:
     dimensionid: str
     fileid: int
     sampleid: int
+    run_id: str
+    projectid: int | None
+    siteid: int | None
+    dataset_uid: str
+    dataset_role: str
+    dimension_uid: str
+    dimension_axis: str
+    segmentid: int | None
+    segment_uid: str
+    file_uid: str
+    sample_uid: str
+    point_uid: str
     inline_m: float
     crossline_m: float
     depth_m: float
+    time_ms: float | None
+    horizon_top_id: int | None
+    horizon_top_uid: str
     horizon_top_m: float
+    horizon_base_id: int | None
+    horizon_base_uid: str
     horizon_base_m: float
+    structure_depth_m: float | None
+    amplitude: float | None
+    phase: float | None
     coherence: float
+    velocity_m_s: float | None
+    impedance_ai: float | None
+    fault_id: str
+    fault_uid: str
+    fault_throw_m: float | None
     fault_likelihood: float
     fracture_intensity: float
     reservoir_probability: float
+    well_id: str
+    well_uid: str
+    well_distance_m: float | None
     lithology: str
+    logical_size_bytes: int | None
+    artifact_path: str
+    source_table: str
+    source_file: str
+    source_row: int
+    synthetic_data: bool
 
 
 @dataclass(frozen=True)
@@ -72,6 +108,7 @@ class SurveyInputs:
     catalog_run_id: str | None
     wells: list[WellLocation]
     catalog_faults: list[dict[str, Any]]
+    digital_twin: dict[str, Any] | None = None
 
     @property
     def inline_extent_m(self) -> tuple[float, float]:
@@ -86,17 +123,26 @@ class SurveyInputs:
         return _extent([point.depth_m for point in self.points])
 
 
-def load_points(csv_path: Path | str) -> list[SeismicPoint]:
+def load_points(
+    csv_path: Path | str,
+    *,
+    catalog_run_id: str | None = None,
+    file_lookup: dict[int, dict[str, Any]] | None = None,
+) -> list[SeismicPoint]:
     path = Path(csv_path)
     if not path.is_file():
         raise SubsurfaceDataError(f"visualization points CSV not found: {path}")
 
+    files = {} if file_lookup is None else file_lookup
     with path.open(encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
         missing = [name for name in REQUIRED_POINT_COLUMNS if name not in (reader.fieldnames or [])]
         if missing:
             raise SubsurfaceDataError(f"{path} is missing required columns: {', '.join(missing)}")
-        points = [_parse_point(path, index, row) for index, row in enumerate(reader, start=1)]
+        points = [
+            _parse_point(path, index, row, catalog_run_id=catalog_run_id, file_lookup=files)
+            for index, row in enumerate(reader, start=1)
+        ]
 
     if not points:
         raise SubsurfaceDataError(f"{path} contains no data rows")
@@ -159,6 +205,7 @@ def load_survey(
 
     assert resolved_points is not None
     tables = catalog.get("tables", {})
+    file_lookup = _file_lookup(tables)
     wells = [
         WellLocation(
             id=str(row["name"]),
@@ -171,11 +218,16 @@ def load_survey(
     ]
     return SurveyInputs(
         points_path=resolved_points,
-        points=load_points(resolved_points),
+        points=load_points(
+            resolved_points,
+            catalog_run_id=str(catalog["run"]["id"]) if "run" in catalog else None,
+            file_lookup=file_lookup,
+        ),
         catalog_path=resolved_catalog,
         catalog_run_id=str(catalog["run"]["id"]) if "run" in catalog else None,
         wells=wells,
         catalog_faults=list(tables.get("faults", [])),
+        digital_twin=_load_digital_twin(catalog),
     )
 
 
@@ -207,24 +259,95 @@ def clamp(value: float, lower: float = 0.0, upper: float = 1.0) -> float:
     return max(lower, min(upper, value))
 
 
-def _parse_point(path: Path, index: int, row: dict[str, str]) -> SeismicPoint:
+def _parse_point(
+    path: Path,
+    index: int,
+    row: dict[str, str],
+    *,
+    catalog_run_id: str | None,
+    file_lookup: dict[int, dict[str, Any]],
+) -> SeismicPoint:
     try:
+        fileid = int(row["fileid"])
+        sampleid = int(row["sampleid"])
+        file_row = file_lookup.get(fileid, {})
+        run_id = row.get("run_id") or catalog_run_id or ""
+        datasetid = int(row["datasetid"])
+        projectid = _optional_int(row.get("projectid") or file_row.get("projectid"))
+        siteid = _optional_int(row.get("siteid") or file_row.get("siteid"))
+        segmentid = _optional_int(row.get("segmentid") or file_row.get("segmentid"))
+        dimensionid = row["dimensionid"]
+        source_row = _optional_int(row.get("source_row")) or index
+        horizon_top_id = _optional_int(row.get("horizon_top_id")) or 2
+        horizon_base_id = _optional_int(row.get("horizon_base_id")) or 3
+        fault_id = row.get("fault_id", "")
+        well_id = row.get("well_id", "")
+        artifact_path = (
+            row.get("artifact_path") or str(file_row.get("artifact_path", "")) or str(path)
+        )
         return SeismicPoint(
             row=index,
-            datasetid=int(row["datasetid"]),
-            dimensionid=row["dimensionid"],
-            fileid=int(row["fileid"]),
-            sampleid=int(row["sampleid"]),
+            datasetid=datasetid,
+            dimensionid=dimensionid,
+            fileid=fileid,
+            sampleid=sampleid,
+            run_id=run_id,
+            projectid=projectid,
+            siteid=siteid,
+            dataset_uid=row.get("dataset_uid") or _stable_id(run_id, "dataset", datasetid),
+            dataset_role=row.get("dataset_role", ""),
+            dimension_uid=(
+                row.get("dimension_uid")
+                or ("" if not dimensionid else _stable_id(run_id, "dimension", dimensionid))
+            ),
+            dimension_axis=row.get("dimension_axis", ""),
+            segmentid=segmentid,
+            segment_uid=(
+                row.get("segment_uid")
+                or ("" if segmentid is None else _stable_id(run_id, "segment", segmentid))
+            ),
+            file_uid=row.get("file_uid") or _stable_id(run_id, "file", fileid),
+            sample_uid=row.get("sample_uid") or _stable_sample(run_id, fileid, sampleid),
+            point_uid=row.get("point_uid") or _stable_point(run_id, source_row),
             inline_m=float(row["inline_m"]),
             crossline_m=float(row["crossline_m"]),
             depth_m=float(row["depth_m"]),
+            time_ms=_optional_float(row.get("time_ms")),
+            horizon_top_id=horizon_top_id,
+            horizon_top_uid=row.get("horizon_top_uid")
+            or _stable_id(run_id, "horizon", horizon_top_id),
             horizon_top_m=float(row["horizon_top_m"]),
+            horizon_base_id=horizon_base_id,
+            horizon_base_uid=row.get("horizon_base_uid")
+            or _stable_id(run_id, "horizon", horizon_base_id),
             horizon_base_m=float(row["horizon_base_m"]),
+            structure_depth_m=_optional_float(row.get("structure_depth_m")),
+            amplitude=_optional_float(row.get("amplitude")),
+            phase=_optional_float(row.get("phase")),
             coherence=float(row["coherence"]),
+            velocity_m_s=_optional_float(row.get("velocity_m_s")),
+            impedance_ai=_optional_float(row.get("impedance_ai")),
+            fault_id=fault_id,
+            fault_uid=(
+                row.get("fault_uid")
+                or ("" if not fault_id else _stable_id(run_id, "fault", fault_id))
+            ),
+            fault_throw_m=_optional_float(row.get("fault_throw_m")),
             fault_likelihood=float(row["fault_likelihood"]),
             fracture_intensity=float(row["fracture_intensity"]),
             reservoir_probability=float(row["reservoir_probability"]),
+            well_id=well_id,
+            well_uid=(
+                row.get("well_uid") or ("" if not well_id else _stable_id(run_id, "well", well_id))
+            ),
+            well_distance_m=_optional_float(row.get("well_distance_m")),
             lithology=row["lithology"],
+            logical_size_bytes=_optional_int(row.get("logical_size_bytes")),
+            artifact_path=artifact_path,
+            source_table=row.get("source_table") or "visualization_points",
+            source_file=row.get("source_file") or str(path),
+            source_row=source_row,
+            synthetic_data=_bool_value(row.get("synthetic_data"), default=True),
         )
     except (TypeError, ValueError) as error:
         raise SubsurfaceDataError(f"{path} data row {index} is malformed: {error}") from error
@@ -250,3 +373,63 @@ def _read_json(path: Path) -> dict[str, Any]:
 
 def _extent(values: list[float]) -> tuple[float, float]:
     return (min(values), max(values)) if values else (0.0, 0.0)
+
+
+def _file_lookup(tables: Any) -> dict[int, dict[str, Any]]:
+    files = tables.get("files", []) if isinstance(tables, dict) else []
+    lookup: dict[int, dict[str, Any]] = {}
+    if not isinstance(files, list):
+        return lookup
+    for row in files:
+        if isinstance(row, dict) and "id" in row:
+            lookup[int(row["id"])] = row
+    return lookup
+
+
+def _load_digital_twin(catalog: dict[str, Any]) -> dict[str, Any] | None:
+    path = catalog.get("artifacts", {}).get("digital_twin", {}).get("seed_json")
+    if not path:
+        return None
+    seed_path = Path(str(path))
+    if not seed_path.is_file():
+        return None
+    return _read_json(seed_path)
+
+
+def _stable_id(run_id: str, entity: str, raw_id: object) -> str:
+    if run_id:
+        return stable_entity_id(run_id, entity, raw_id)
+    token = str(raw_id)
+    if token.isdecimal():
+        token = f"{int(token):06d}"
+    return f"{entity}:{token}"
+
+
+def _stable_sample(run_id: str, fileid: int, sampleid: int) -> str:
+    if run_id:
+        return stable_sample_id(run_id, fileid, sampleid)
+    return f"sample:{fileid:06d}:{sampleid:06d}"
+
+
+def _stable_point(run_id: str, source_row: int) -> str:
+    if run_id:
+        return stable_point_id(run_id, source_row)
+    return f"point:{source_row:08d}"
+
+
+def _optional_float(value: object | None) -> float | None:
+    if value is None or value == "":
+        return None
+    return float(str(value))
+
+
+def _optional_int(value: object | None) -> int | None:
+    if value is None or value == "":
+        return None
+    return int(str(value))
+
+
+def _bool_value(value: object | None, *, default: bool) -> bool:
+    if value is None or value == "":
+        return default
+    return str(value).strip().lower() in {"1", "true", "yes", "y"}

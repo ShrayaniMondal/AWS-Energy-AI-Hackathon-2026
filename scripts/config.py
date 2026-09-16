@@ -1,7 +1,10 @@
+import os
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = PROJECT_ROOT / "data" / "raw"
+DATA_DIR = Path(
+    os.getenv("DRILLING_DATA_DIR", str(PROJECT_ROOT / "Hackathon" / "use-case-1" / "data"))
+).expanduser()
 
 # Corpus A — Narrative JSON DDRs (keyed on well_name)
 CORPUS_A_DIR = DATA_DIR / "daily_drilling_reports"

@@ -163,6 +163,58 @@ class SeismicCatalogGeneratorTests(unittest.TestCase):
             runs = list_catalog_runs(output_dir)
             self.assertEqual([run["run_id"] for run in runs], [first.run_id, second.run_id])
 
+    def test_digital_twin_seed_exports_restartable_provenance(self) -> None:
+        with TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir)
+            first = generate_catalog(
+                1,
+                output_dir=output_dir,
+                dataset_kind="standard",
+                segments=1,
+                files=1,
+                points_per_file=3,
+                seed=31,
+                created_at=CREATED_AT,
+            )
+            second = generate_catalog(
+                1,
+                output_dir=output_dir,
+                dataset_kind="standard",
+                segments=1,
+                files=1,
+                points_per_file=3,
+                seed=31,
+                created_at=CREATED_AT,
+            )
+
+            first_artifacts = first.metadata["artifacts"]["digital_twin"]
+            second_artifacts = second.metadata["artifacts"]["digital_twin"]
+            self.assertNotEqual(first_artifacts["seed_json"], second_artifacts["seed_json"])
+            self.assertTrue(Path(first_artifacts["seed_json"]).exists())
+            self.assertTrue(Path(second_artifacts["points_csv"]).exists())
+
+            seed = json.loads(Path(first_artifacts["seed_json"]).read_text(encoding="utf-8"))
+            self.assertEqual(seed["run"]["run_id"], first.run_id)
+            self.assertTrue(seed["digital_twin"]["synthetic_data"])
+            self.assertIn("metrics", seed["endpoints"])
+            self.assertEqual(len(seed["features"]["wells"]), len(first.metadata["tables"]["wells"]))
+            self.assertTrue(seed["features"]["faults"][0]["fault_uid"].startswith(first.run_id))
+            self.assertTrue(seed["features"]["horizons"][0]["horizon_uid"].startswith(first.run_id))
+
+            with Path(first_artifacts["points_csv"]).open(encoding="utf-8", newline="") as handle:
+                rows = list(csv.DictReader(handle))
+            self.assertEqual(len(rows), 3)
+            point = rows[0]
+            self.assertEqual(point["run_id"], first.run_id)
+            self.assertEqual(point["synthetic_data"], "true")
+            self.assertTrue(point["dataset_uid"].startswith(first.run_id))
+            self.assertTrue(point["file_uid"].startswith(first.run_id))
+            self.assertTrue(point["sample_uid"].startswith(first.run_id))
+            self.assertTrue(Path(point["artifact_path"]).exists())
+            self.assertEqual(point["source_table"], "visualization_points")
+            self.assertEqual(point["source_row"], "1")
+            self.assertEqual(point["horizon_top_uid"], f"{first.run_id}:horizon:000002")
+
     def test_cli_accepts_required_dataset_count_and_optional_counts(self) -> None:
         with TemporaryDirectory() as temp_dir:
             result = run_cli(

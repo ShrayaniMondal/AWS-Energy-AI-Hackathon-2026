@@ -62,7 +62,9 @@ class DetectedFault:
 
         clamped = max(self.crossline_min_m, min(self.crossline_max_m, crossline_m))
         if clamped == crossline_m:
-            return abs(self.horizontal_offset_m(inline_m, crossline_m)) / math.hypot(1.0, self.slope)
+            return abs(self.horizontal_offset_m(inline_m, crossline_m)) / math.hypot(
+                1.0, self.slope
+            )
         return math.hypot(inline_m - self.inline_at(clamped), crossline_m - clamped)
 
     def trace(self) -> tuple[tuple[float, float], tuple[float, float]]:
@@ -233,7 +235,9 @@ def score_against_catalog(
                 slope_error=round(best.slope - truth_slope, 3),
                 catalog_throw_m=round(truth_throw, 1),
                 detected_throw_m=best.throw_m,
-                throw_error_m=None if best.throw_m is None else round(best.throw_m - truth_throw, 1),
+                throw_error_m=None
+                if best.throw_m is None
+                else round(best.throw_m - truth_throw, 1),
             )
         )
 
@@ -310,7 +314,9 @@ def _weighted_line_fit(
         score * (point.crossline_m - reference - mean_y) * (point.inline_m - mean_x)
         for point, score in support
     )
-    variance = sum(score * (point.crossline_m - reference - mean_y) ** 2 for point, score in support)
+    variance = sum(
+        score * (point.crossline_m - reference - mean_y) ** 2 for point, score in support
+    )
     if variance <= 1e-9:
         return fallback
     slope = covariance / variance
@@ -374,9 +380,10 @@ def _estimate_throw(
 
     Only samples whose nearest detected trace is this fault are used, so offsets
     from neighbouring fault blocks do not leak into the estimate. Samples are
-    grouped by catalog dimension because each dimension carries its own depth bias. Within a group the horizon top is fitted as a quadratic in
-    offset plus a step at the trace; the step is the throw. Groups are combined
-    with the median.
+    grouped by catalog dimension because each dimension carries its own depth
+    bias. Within a group the horizon top is fitted as a quadratic in offset plus
+    a step at the trace; the step is the throw. Groups are combined with the
+    median.
     """
 
     groups: dict[str, list[tuple[float, float]]] = defaultdict(list)

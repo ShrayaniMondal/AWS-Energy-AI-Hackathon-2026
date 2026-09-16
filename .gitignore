@@ -6,6 +6,8 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.coverage
+coverage.xml
 
 # Generated evidence and build outputs
 outputs/
@@ -23,6 +25,7 @@ agentcore/.env.local
 
 # AgentCore/CDK generated state
 agentcore/.cache/
+agentcore/geodrill_copilot/
 agentcore/cdk/node_modules/
 agentcore/cdk/dist/
 agentcore/cdk/cdk.out/

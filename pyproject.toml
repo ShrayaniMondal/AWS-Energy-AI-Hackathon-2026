@@ -15,6 +15,7 @@ dependencies = [
 [project.optional-dependencies]
 dashboard = [
   "pandas>=2.2,<3",
+  "plotly>=5.24,<7",
   "streamlit>=1.40,<2",
 ]
 agentcore = [
@@ -23,6 +24,7 @@ agentcore = [
   "strands-agents>=1.15,<2",
 ]
 dev = [
+  "coverage[toml]>=7.6,<8",
   "mypy>=1.11,<2",
   "pytest>=8,<9",
   "pyyaml>=6,<7",
@@ -33,6 +35,7 @@ dev = [
 seismic-catalog-generate = "aws_ai_energy.generate.seismic_catalog:main"
 seismic-catalog-analyze = "aws_ai_energy.subsurface.cli:main"
 claude-submission-validate = "aws_ai_energy.validation:main"
+geodrill-toolbox-docs = "aws_ai_energy.toolbox_docs:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/aws_ai_energy"]
@@ -40,6 +43,20 @@ packages = ["src/aws_ai_energy"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+
+[tool.coverage.run]
+branch = true
+source = ["aws_ai_energy", "agentcore_app", "scripts"]
+omit = [
+  "scripts/data_loader.py",
+  "scripts/vector_index.py",
+]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+skip_covered = true
+precision = 1
 
 [tool.ruff]
 line-length = 100

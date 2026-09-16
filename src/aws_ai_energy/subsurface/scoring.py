@@ -47,6 +47,7 @@ class PointScore:
     nearest_well_distance_m: float | None
     hazard_score: float
     target_score: float
+    confidence_score: float
     decision: str
 
 
@@ -77,7 +78,10 @@ def score_points(
         well_id: str | None = None
         well_distance: float | None = None
         for well in wells:
-            candidate = math.hypot(point.inline_m - well.inline_m, point.crossline_m - well.crossline_m)
+            candidate = math.hypot(
+                point.inline_m - well.inline_m,
+                point.crossline_m - well.crossline_m,
+            )
             if well_distance is None or candidate < well_distance:
                 well_id, well_distance = well.id, candidate
         well_control = (
@@ -89,6 +93,12 @@ def score_points(
             settings.target_reservoir_weight * point.reservoir_probability
             + settings.target_low_hazard_weight * (1.0 - hazard)
             + settings.target_well_control_weight * well_control
+        )
+        confidence = clamp(
+            0.40
+            + 0.30 * point.reservoir_probability
+            + 0.20 * (1.0 - hazard)
+            + (0.10 if point.artifact_path else 0.0)
         )
 
         decision = "watch_zone"
@@ -120,6 +130,7 @@ def score_points(
                 nearest_well_distance_m=None if well_distance is None else round(well_distance, 1),
                 hazard_score=round(hazard, 4),
                 target_score=round(target, 4),
+                confidence_score=round(confidence, 4),
                 decision=decision,
             )
         )
@@ -140,19 +151,39 @@ def score_row(score: PointScore) -> dict[str, object]:
     point = score.point
     return {
         "row": point.row,
+        "run_id": point.run_id,
+        "projectid": "" if point.projectid is None else point.projectid,
+        "siteid": "" if point.siteid is None else point.siteid,
         "datasetid": point.datasetid,
+        "dataset_uid": point.dataset_uid,
         "dimensionid": point.dimensionid,
+        "dimension_uid": point.dimension_uid,
+        "segmentid": "" if point.segmentid is None else point.segmentid,
+        "segment_uid": point.segment_uid,
         "fileid": point.fileid,
+        "file_uid": point.file_uid,
         "sampleid": point.sampleid,
+        "sample_uid": point.sample_uid,
+        "point_uid": point.point_uid,
         "inline_m": point.inline_m,
         "crossline_m": point.crossline_m,
         "depth_m": point.depth_m,
         "depth_ft": score.depth_ft,
+        "horizon_top_id": "" if point.horizon_top_id is None else point.horizon_top_id,
+        "horizon_top_uid": point.horizon_top_uid,
+        "horizon_top_m": point.horizon_top_m,
+        "horizon_base_id": "" if point.horizon_base_id is None else point.horizon_base_id,
+        "horizon_base_uid": point.horizon_base_uid,
+        "horizon_base_m": point.horizon_base_m,
         "lithology": point.lithology,
         "coherence": point.coherence,
         "fault_likelihood": point.fault_likelihood,
         "fracture_intensity": point.fracture_intensity,
         "reservoir_probability": point.reservoir_probability,
+        "catalog_fault_id": point.fault_id,
+        "catalog_fault_uid": point.fault_uid,
+        "catalog_well_id": point.well_id,
+        "catalog_well_uid": point.well_uid,
         "fault_score": score.fault_score,
         "nearest_fault_id": score.nearest_fault_id or "",
         "fault_distance_m": "" if score.fault_distance_m is None else score.fault_distance_m,
@@ -165,5 +196,11 @@ def score_row(score: PointScore) -> dict[str, object]:
         ),
         "hazard_score": score.hazard_score,
         "target_score": score.target_score,
+        "confidence_score": score.confidence_score,
         "decision": score.decision,
+        "artifact_path": point.artifact_path,
+        "source_table": point.source_table,
+        "source_file": point.source_file,
+        "source_row": point.source_row,
+        "synthetic_data": point.synthetic_data,
     }

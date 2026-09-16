@@ -12,6 +12,8 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Literal
 
+from aws_ai_energy.generate.digital_twin import write_digital_twin_artifacts
+
 DatasetKind = Literal["standard", "multidimensional", "mixed"]
 
 DEFAULT_RANGE_MIN = 1
@@ -261,6 +263,12 @@ def generate_catalog(
         "matplotlib_example": "generate/plot_matplotlib.py",
         "ggplot_example": "generate/plot_ggplot.R",
     }
+    metadata["artifacts"]["digital_twin"] = write_digital_twin_artifacts(
+        metadata,
+        run_dir,
+        visualization_path,
+    )
+    row_counts["digital_twin_points"] = row_counts["visualization_points"]
     _write_json(metadata_path, metadata)
     _write_json(latest_metadata_path, metadata)
 
@@ -270,6 +278,7 @@ def generate_catalog(
         "metadata_path": str(metadata_path),
         "visualization_path": str(visualization_path),
         "files_root": str(files_root),
+        "digital_twin": metadata["artifacts"]["digital_twin"],
         "row_counts": row_counts,
         "inputs": metadata["inputs"],
     }
@@ -392,14 +401,22 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Print the latest catalog metadata path for --output-dir instead of generating data.",
     )
+    parser.add_argument(
+        "--digital-twin-endpoints",
+        action="store_true",
+        help="Print restartable digital-twin endpoint metadata for the latest run.",
+    )
     return parser
 
 
 def run_cli(argv: Sequence[str] | None = None) -> CatalogGenerationResult:
     parser = build_parser()
     args = parser.parse_args(argv)
-    if args.list_runs or args.latest_metadata:
-        parser.error("--list-runs and --latest-metadata are available through the CLI entrypoint")
+    if args.list_runs or args.latest_metadata or args.digital_twin_endpoints:
+        parser.error(
+            "--list-runs, --latest-metadata, and --digital-twin-endpoints are available "
+            "through the CLI entrypoint"
+        )
     if args.dataset_count is None:
         parser.error("dataset_count is required unless --list-runs or --latest-metadata is used")
     return _generate_from_args(args)
@@ -432,6 +449,16 @@ def main(argv: Sequence[str] | None = None) -> None:
             raise SystemExit(f"No latest run metadata found under {args.output_dir}")
         latest = load_catalog(latest_run_path)
         print(latest["metadata_path"])
+        return
+    if args.digital_twin_endpoints:
+        latest = load_latest_catalog(args.output_dir)
+        print(
+            json.dumps(
+                latest.get("artifacts", {}).get("digital_twin", {}),
+                indent=2,
+                sort_keys=True,
+            )
+        )
         return
     if args.dataset_count is None:
         parser.error("dataset_count is required unless --list-runs or --latest-metadata is used")
@@ -843,7 +870,10 @@ def _nearest_well(
 ) -> dict[str, Any]:
     nearest: dict[str, Any] | None = None
     for well in wells:
-        distance = math.hypot(inline - float(well["inline_m"]), crossline - float(well["crossline_m"]))
+        distance = math.hypot(
+            inline - float(well["inline_m"]),
+            crossline - float(well["crossline_m"]),
+        )
         candidate = dict(well)
         candidate["distance_m"] = distance
         if nearest is None or distance < float(nearest["distance_m"]):
@@ -974,10 +1004,7 @@ def _unique_path(path: Path) -> tuple[Path, int]:
         return path, 0
 
     suffix = "".join(path.suffixes)
-    if suffix:
-        stem = path.name[: -len(suffix)]
-    else:
-        stem = path.name
+    stem = path.name[: -len(suffix)] if suffix else path.name
 
     index = 1
     while True:
