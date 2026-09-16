@@ -47,6 +47,7 @@ class PointScore:
     nearest_well_distance_m: float | None
     hazard_score: float
     target_score: float
+    confidence_score: float
     decision: str
 
 
@@ -100,6 +101,14 @@ def score_points(
         ):
             decision = "drilling_candidate"
 
+        confidence = _confidence(
+            reservoir_probability=point.reservoir_probability,
+            fault_score_value=score,
+            fracture_intensity=point.fracture_intensity,
+            well_control=well_control,
+            has_fault=fault is not None,
+        )
+
         cell = cell_id(
             math.floor(point.inline_m / cell_size),
             math.floor(point.crossline_m / cell_size),
@@ -120,6 +129,7 @@ def score_points(
                 nearest_well_distance_m=None if well_distance is None else round(well_distance, 1),
                 hazard_score=round(hazard, 4),
                 target_score=round(target, 4),
+                confidence_score=round(confidence, 4),
                 decision=decision,
             )
         )
@@ -134,6 +144,31 @@ def top_scores(scores: list[PointScore], field: str, limit: int) -> list[PointSc
         key=lambda item: (float(getattr(item, field)), -item.point.row),
         reverse=True,
     )[:limit]
+
+
+def _confidence(
+    *,
+    reservoir_probability: float,
+    fault_score_value: float,
+    fracture_intensity: float,
+    well_control: float,
+    has_fault: bool,
+) -> float:
+    """Bounded [0, 1] evidence-strength score for the ranking.
+
+    Higher when nearby wells provide ground truth, when a fault has been
+    detected, and when attribute signals are decisive rather than ambiguous.
+    """
+    reservoir_decisiveness = abs(2.0 * reservoir_probability - 1.0)
+    fault_decisiveness = abs(2.0 * fault_score_value - 1.0)
+    fracture_decisiveness = abs(2.0 * fracture_intensity - 1.0)
+    return clamp(
+        0.30 * well_control
+        + 0.20 * reservoir_decisiveness
+        + 0.20 * fault_decisiveness
+        + 0.15 * fracture_decisiveness
+        + 0.15 * (1.0 if has_fault else 0.0)
+    )
 
 
 def score_row(score: PointScore) -> dict[str, object]:
@@ -165,5 +200,6 @@ def score_row(score: PointScore) -> dict[str, object]:
         ),
         "hazard_score": score.hazard_score,
         "target_score": score.target_score,
+        "confidence_score": score.confidence_score,
         "decision": score.decision,
     }

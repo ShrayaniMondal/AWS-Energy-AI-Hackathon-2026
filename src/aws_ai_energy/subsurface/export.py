@@ -67,11 +67,19 @@ def export_bundle(
     )
     hotspots = top_scores(scores, "hazard_score", top_n)
     targets = top_scores(scores, "target_score", top_n)
+    hotspot_rows = [score_row(score) for score in hotspots]
+    target_rows = [score_row(score) for score in targets]
     files["fault_fracture_hotspots"] = _write_csv(
-        run_dir / "fault_fracture_hotspots.csv", [score_row(score) for score in hotspots]
+        run_dir / "fault_fracture_hotspots.csv", hotspot_rows
     )
     files["reservoir_targets"] = _write_csv(
-        run_dir / "reservoir_targets.csv", [score_row(score) for score in targets]
+        run_dir / "reservoir_targets.csv", target_rows
+    )
+    files["fault_fracture_hotspots_json"] = _write_json(
+        run_dir / "fault_fracture_hotspots.json", hotspot_rows
+    )
+    files["reservoir_targets_json"] = _write_json(
+        run_dir / "reservoir_targets.json", target_rows
     )
     files["faults_csv"] = _write_csv(
         run_dir / "faults.csv",
